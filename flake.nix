@@ -13,10 +13,12 @@
             url = "github:nix-community/NUR";
             inputs.nixpkgs.follows = "nixpkgs";
         };
+
+	hyprland.url = "github:hyprwm/Hyprland";
     };
 
 	# All outputs for the system (configs)
-    outputs = { home-manager, nixpkgs, nur, ... }@inputs: 
+    outputs = { home-manager, nixpkgs, nur, hyprland, ... }@inputs: 
         let
             system = "x86_64-linux"; #current system
             pkgs = inputs.nixpkgs.legacyPackages.x86_64-linux;
@@ -30,6 +32,7 @@
                     system = system;
                     modules = [
                         { networking.hostName = hostname; }
+			hyprland.nixosModules.default
                         # General configuration (users, networking, sound, etc)
                         ./modules/system/configuration.nix
                         # Hardware config (bootloader, kernel modules, filesystems, etc)
@@ -45,9 +48,7 @@
                                 users.frankoslaw = (./. + "/hosts/${hostname}/user.nix");
                             };
                             nixpkgs.overlays = [
-                                # Add nur overlay for Firefox addons
                                 nur.overlay
-                                (import ./overlays)
                             ];
                         }
                     ];

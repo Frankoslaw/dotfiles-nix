@@ -14,6 +14,8 @@ in {
             caprine-bin
             discord
             prismlauncher
+            kitty
+            wofi
         ];
     };
 }

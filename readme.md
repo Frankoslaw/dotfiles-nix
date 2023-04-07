@@ -73,3 +73,12 @@ Lastly, build the configuration with
 ```bash
 sudo nixos-rebuild switch --flake .#yourComputer
 ```
+
+### TODO:
+
+- move from sudo to doas
+- add nixage for secrets
+- add kubernetes configs
+- add virtualization configs
+- add vscode plugins
+- enable zsh

@@ -1,7 +1,28 @@
 { config, pkgs, inputs, ... }:
 
 {
-    programs.zsh.enable = true;
+    services.xserver.enable = true;
+    services.xserver.displayManager.gdm.enable = true;
+
+    services.dbus.enable = true;
+    xdg.portal = {
+        enable = true;
+        wlr.enable = true;
+        extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    };
+    
+    programs.hyprland.enable = true;
+    programs.xwayland.enable = true;
+
+    # Install fonts
+    fonts = {
+        fonts = with pkgs; [
+            jetbrains-mono
+            roboto
+            openmoji-color
+            (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+        ];
+    };
 
     # Bootloader.
     boot.loader = {
@@ -43,19 +64,6 @@
         LC_TIME = "pl_PL.UTF-8";
     };
 
-    # Enable the X11 windowing system.
-    services.xserver.enable = true;
-
-    # Enable the GNOME Desktop Environment.
-    services.xserver.displayManager.gdm.enable = true;
-    services.xserver.desktopManager.gnome.enable = true;
-
-    # Configure keymap in X11
-    services.xserver = {
-        layout = "pl";
-        xkbVariant = "";
-    };
-
     # Configure console keymap
     console.keyMap = "pl2";
 
@@ -85,7 +93,7 @@
         isNormalUser = true;
         description = "Franciszek Łopuszański";
         extraGroups = [ "networkmanager" "wheel" ];
-        shell = pkgs.zsh;
+        shell = pkgs.bash;
     };
 
     # Allow unfree packages
@@ -110,12 +118,9 @@
     # List packages installed in system profile. To search, run:
     # $ nix search wget
     environment.systemPackages = with pkgs; [
-        vim
-        wget
-        firefox
-        gnome.gedit
-        neofetch
-        git
+        vim wget firefox
+        gnome.gedit neofetch
+        git acpi tlp nano
     ];
 
     # Do not touch

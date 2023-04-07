@@ -6,14 +6,15 @@
 {
     home.stateVersion = "22.11";
     imports = [
+        # gui
+
         # cli
-        # ./nvim
-        # ./zsh
-        # ./git
-        # ./gpg
-        # ./direnv
+        ./git
+        ./gpg
+        ./direnv
 
         # system
+        ./xdg
         ./packages
     ];
 }
