@@ -4,6 +4,7 @@
     imports = [ ../../modules/default.nix ];
     config.modules = {
         # gui
+        hyprland.enable = true;
 
         # cli
         git.enable = true;

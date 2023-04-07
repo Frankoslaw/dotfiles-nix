@@ -7,6 +7,7 @@
     home.stateVersion = "22.11";
     imports = [
         # gui
+        ./hyprland
 
         # cli
         ./git

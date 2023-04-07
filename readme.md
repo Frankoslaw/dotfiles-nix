@@ -10,7 +10,7 @@
 ## Commands to know
 - Rebuild and switch the system configuration (in the config directory):
 ```
-sudo nixos-rebuild switch --flake .#yourComputer --fast
+doas nixos-rebuild switch --flake .#yourComputer --fast
 ```
 
 ## Installation
@@ -34,7 +34,7 @@ git clone https://github.com/Frankoslaw/dotfiles-nix ~/.config/nixos && cd ~/.co
 First, create a hardware configuration for your system:
 
 ```bash
-sudo nixos-generate-config
+doas nixos-generate-config
 ```
 
 You can then copy this to a the `hosts/` directory (note: change `yourComputer` with whatever you want):
@@ -71,12 +71,11 @@ Next, create `hosts/yourComputer/user.nix`, a configuration file for your system
 Lastly, build the configuration with 
 
 ```bash
-sudo nixos-rebuild switch --flake .#yourComputer
+doas nixos-rebuild switch --flake .#yourComputer
 ```
 
 ### TODO:
 
-- move from sudo to doas
 - add nixage for secrets
 - add kubernetes configs
 - add virtualization configs

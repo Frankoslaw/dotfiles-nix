@@ -92,7 +92,7 @@
     users.users.frankoslaw = {
         isNormalUser = true;
         description = "Franciszek Łopuszański";
-        extraGroups = [ "networkmanager" "wheel" ];
+        extraGroups = [ "networkmanager" "input" "wheel" ];
         shell = pkgs.bash;
     };
 
@@ -121,7 +121,23 @@
         vim wget firefox
         gnome.gedit neofetch
         git acpi tlp nano
+        doas
     ];
+
+    security = {
+        sudo.enable = false;
+        doas = {
+            enable = true;
+            extraRules = [{
+                users = [ "frankoslaw" ];
+                keepEnv = true;
+                persist = true;
+            }];
+        };
+
+        # Extra security
+        protectKernelImage = true;
+    };
 
     # Do not touch
     system.stateVersion = "22.11";
