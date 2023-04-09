@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, config, ... }:
 
 with lib;
 let cfg = config.modules.gtk;
@@ -8,6 +8,7 @@ in {
     config = mkIf cfg.enable {
         gtk = {
             enable = true;
+            
             theme = {
                 name = "Materia-dark";
                 package = pkgs.materia-theme;
