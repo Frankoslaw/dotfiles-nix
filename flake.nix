@@ -1,7 +1,7 @@
 {
-  description = "NixOS configuration";
+    description = "NixOS configuration";
 
-  inputs = {
+    inputs = {
         nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
         home-manager = {
@@ -13,12 +13,10 @@
             url = "github:nix-community/NUR";
             inputs.nixpkgs.follows = "nixpkgs";
         };
-
-	hyprland.url = "github:hyprwm/Hyprland";
     };
 
 	# All outputs for the system (configs)
-    outputs = { home-manager, nixpkgs, nur, hyprland, ... }@inputs: 
+    outputs = { home-manager, nixpkgs, nur, ... }@inputs: 
         let
             system = "x86_64-linux"; #current system
             pkgs = inputs.nixpkgs.legacyPackages.x86_64-linux;
@@ -32,7 +30,6 @@
                     system = system;
                     modules = [
                         { networking.hostName = hostname; }
-			hyprland.nixosModules.default
                         # General configuration (users, networking, sound, etc)
                         ./modules/system/configuration.nix
                         # Hardware config (bootloader, kernel modules, filesystems, etc)

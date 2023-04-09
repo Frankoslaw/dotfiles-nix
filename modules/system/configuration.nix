@@ -3,16 +3,9 @@
 {
     services.xserver.enable = true;
     services.xserver.displayManager.gdm.enable = true;
+    services.xserver.desktopManager.gnome.enable = true;
 
-    services.dbus.enable = true;
-    xdg.portal = {
-        enable = true;
-        wlr.enable = true;
-        extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-    };
-    
-    programs.hyprland.enable = true;
-    programs.xwayland.enable = true;
+    programs.dconf.enable = true;
 
     # Install fonts
     fonts = {
@@ -106,7 +99,7 @@
         gc = {
             automatic = true;
             dates = "weekly";
-            options = "--delete-older-than 7d";
+            options = "--delete-older-than 2d";
         };
         extraOptions = ''
             experimental-features = nix-command flakes
@@ -121,7 +114,7 @@
         vim wget firefox
         gnome.gedit neofetch
         git acpi tlp nano
-        doas
+        doas gnome.gnome-tweaks
     ];
 
     security = {

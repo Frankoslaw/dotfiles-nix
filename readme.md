@@ -81,3 +81,5 @@ doas nixos-rebuild switch --flake .#yourComputer
 - add virtualization configs
 - add vscode plugins
 - enable zsh
+- disable hyprpaper ipc
+- restructurize repo

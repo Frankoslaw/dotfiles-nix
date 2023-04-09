@@ -16,6 +16,10 @@ in {
             prismlauncher
             kitty
             wofi
+            rofi-wayland
+            file
+            anime-downloader hakuneko ani-cli anup adl filebot 
+            ffmpeg mpv vlc
         ];
     };
 }
