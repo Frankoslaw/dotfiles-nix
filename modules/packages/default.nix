@@ -15,8 +15,9 @@ in {
             anup adl filebot 
             ffmpeg mpv vlc
             python3 pypy3 devenv.packages.${system}.devenv
-            tmux vagant terraform
-            terraformer
+            tmux vagrant terraform
+            terraformer virt-viewer
+            virt-manager gnome.gnome-boxes
         ];
     };
 }
