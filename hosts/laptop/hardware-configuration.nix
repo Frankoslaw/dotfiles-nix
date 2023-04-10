@@ -12,6 +12,14 @@
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
+  boot.supportedFilesystems = [ 
+    "ntfs" 
+    "btrfs"
+    "ext4"
+    "ext3"
+    "exfat"
+    "fat32"
+  ];
 
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/0bcb6514-d01d-4fe5-9d77-9a6050ccf071";

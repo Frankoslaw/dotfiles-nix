@@ -13,10 +13,12 @@
             url = "github:nix-community/NUR";
             inputs.nixpkgs.follows = "nixpkgs";
         };
+
+        devenv.url = "github:cachix/devenv/latest";
     };
 
 	# All outputs for the system (configs)
-    outputs = { home-manager, nixpkgs, nur, ... }@inputs: 
+    outputs = { home-manager, nixpkgs, nur, devenv, ... }@inputs: 
         let
             system = "x86_64-linux"; #current system
             pkgs = inputs.nixpkgs.legacyPackages.x86_64-linux;
@@ -40,7 +42,7 @@
                             home-manager = {
                                 useUserPackages = true;
                                 useGlobalPkgs = true;
-                                extraSpecialArgs = { inherit inputs; };
+                                extraSpecialArgs = { inherit inputs devenv; };
                                 # Home manager config (configures programs like firefox, zsh, eww, etc)
                                 users.frankoslaw = (./. + "/hosts/${hostname}/user.nix");
                             };

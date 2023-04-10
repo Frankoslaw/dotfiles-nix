@@ -64,7 +64,7 @@
     services.printing.enable = true;
 
     # Set environment variables
-    environment.variables = {
+    environment.variables = rec {
         NIXOS_CONFIG = "$HOME/.config/nixos/configuration.nix";
         NIXOS_CONFIG_DIR = "$HOME/.config/nixos/";
         XDG_DATA_HOME = "$HOME/.local/share";
@@ -114,7 +114,7 @@
         vim wget firefox
         gnome.gedit neofetch
         git acpi tlp nano
-        doas gnome.gnome-tweaks
+        doas cachix
     ];
 
     security = {

@@ -83,3 +83,8 @@ doas nixos-rebuild switch --flake .#yourComputer
 - enable zsh
 - disable hyprpaper ipc
 - restructurize repo
+- move from google chrome to firefox
+- add OPTIONAL hyperland
+- learn neovim
+- pin nixpkgs for reproducibility
+- fix direnv + devenv

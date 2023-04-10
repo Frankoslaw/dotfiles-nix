@@ -6,10 +6,21 @@ let cfg = config.modules.direnv;
 in {
     options.modules.direnv= { enable = mkEnableOption "direnv"; };
     config = mkIf cfg.enable {
+        home.packages = with pkgs; [ 
+            direnv 
+            nix-direnv  
+        ];
+
         programs.direnv = {
             enable = true;
             nix-direnv.enable = true;
-            enableZshIntegration = true;
+            enableBashIntegration = true;
+        };
+
+        programs.bash = {
+            initExtra = ''
+                eval "$(direnv hook bash)"
+            '';
         };
     };
 }
