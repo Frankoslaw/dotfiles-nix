@@ -15,6 +15,7 @@ in {
             anup adl filebot 
             ffmpeg mpv vlc
             python3 pypy3 devenv.packages.${system}.devenv
+            tmux
         ];
     };
 }

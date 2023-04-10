@@ -15,12 +15,7 @@ in {
             enable = true;
             nix-direnv.enable = true;
             enableBashIntegration = true;
-        };
-
-        programs.bash = {
-            initExtra = ''
-                eval "$(direnv hook bash)"
-            '';
+            enableZshIntegration = true;
         };
     };
 }

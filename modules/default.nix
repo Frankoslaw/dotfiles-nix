@@ -8,6 +8,7 @@
         ./gtk
 
         # cli
+        ./zsh
         ./git
         ./gpg
         ./direnv

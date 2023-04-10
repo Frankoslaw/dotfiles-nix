@@ -6,6 +6,7 @@
     services.xserver.desktopManager.gnome.enable = true;
 
     programs.dconf.enable = true;
+    programs.zsh.enable = true;
 
     # Install fonts
     fonts = {
@@ -86,7 +87,7 @@
         isNormalUser = true;
         description = "Franciszek Łopuszański";
         extraGroups = [ "networkmanager" "input" "wheel" ];
-        shell = pkgs.bash;
+        shell = pkgs.zsh;
     };
 
     # Allow unfree packages

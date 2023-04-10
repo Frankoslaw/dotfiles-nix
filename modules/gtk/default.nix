@@ -14,6 +14,7 @@ in {
             gnomeExtensions.pip-on-top
             gnomeExtensions.media-controls
             gnomeExtensions.caffeine
+            gnomeExtensions.tray-icons-reloaded
         ];
 
         gtk = {
@@ -62,6 +63,7 @@ in {
                     "mediacontrols@cliffniff.github.com"
                     "caffeine@patapon.info"
                     "pip-on-top@rafostar.github.com"
+                    "trayIconsReloaded@selfmade.pl"
                 ];
 
                 favorite-apps = [

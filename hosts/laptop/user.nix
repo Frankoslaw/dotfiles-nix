@@ -7,6 +7,7 @@
         gtk.enable = true;
 
         # cli
+        zsh.enable = true;
         git.enable = true;
         gpg.enable = true;
         direnv.enable = true;
