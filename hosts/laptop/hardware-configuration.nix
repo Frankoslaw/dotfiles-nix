@@ -21,6 +21,14 @@
     "fat32"
   ];
 
+  # es8336 patches from https://github.com/codepayne/pop-os-linux
+  # boot.kernelPatches = [
+  #   {
+  #     name = "es8336 support";
+  #     patch = "${./es8336.patch}";
+  #   }
+  # ];
+
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/0bcb6514-d01d-4fe5-9d77-9a6050ccf071";
       fsType = "ext4";

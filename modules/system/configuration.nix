@@ -5,6 +5,8 @@
     services.xserver.displayManager.gdm.enable = true;
     services.xserver.desktopManager.gnome.enable = true;
 
+    virtualisation.libvirtd.enable = true;
+
     programs.dconf.enable = true;
     programs.zsh.enable = true;
 
@@ -86,7 +88,7 @@
     users.users.frankoslaw = {
         isNormalUser = true;
         description = "Franciszek Łopuszański";
-        extraGroups = [ "networkmanager" "input" "wheel" ];
+        extraGroups = [ "networkmanager" "input" "wheel" "qemu-libvirtd" "libvirtd" ];
         shell = pkgs.zsh;
     };
 
