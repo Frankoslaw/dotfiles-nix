@@ -6,10 +6,18 @@ let cfg = config.modules.zsh;
 in {
     options.modules.zsh = { enable = mkEnableOption "zsh"; };
     config = mkIf cfg.enable {
+        home.packages = with pkgs; [ 
+            starship
+        ];
+
         programs.zsh = {
             enable = true;
             enableAutosuggestions = true;
             enableCompletion = true;
+
+            initExtra = ''
+                eval "$(starship init zsh)"
+            '';
 
             oh-my-zsh = {
                 enable = true;
@@ -31,9 +39,10 @@ in {
                     "vi-mode"
                     "yarn"
                     "zsh-navigation-tools"
-                    "direnv"
                 ];
             };
         };
+
+        home.file.".config/starship.toml".source = ./starship.toml;
     };
 }
