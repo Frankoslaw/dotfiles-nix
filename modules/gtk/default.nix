@@ -1,8 +1,9 @@
 { pkgs, lib, config, ... }:
 
 with lib;
-let cfg = config.modules.gtk;
-
+let 
+    cfg = config.modules.gtk;
+    mkTuple = lib.hm.gvariant.mkTuple;
 in {
     options.modules.gtk = { enable = mkEnableOption "gtk"; };
     config = mkIf cfg.enable {
@@ -49,6 +50,13 @@ in {
         home.sessionVariables.GTK_THEME = "Adwaita-dark";
 
         dconf.settings = {
+            "org/gnome/desktop/input-sources" = {
+                sources = [
+                    (mkTuple [ "xkb" "pl" ])
+                    (mkTuple [ "xkb" "us" ])
+                ];
+            };
+
             "org/gnome/shell" = {
                 disable-user-extensions = false;
 
