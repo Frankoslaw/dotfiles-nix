@@ -77,7 +77,6 @@ doas nixos-rebuild switch --flake .#yourComputer
 ### TODO:
 
 - add nixage for secrets
-- add vscode plugins
 - add OPTIONAL hyperland
 - learn neovim
 - use only certain packages from unstable branch

@@ -7,6 +7,7 @@
         # gui
         ./gtk
         ./firefox
+        ./vscode
 
         # cli
         ./zsh

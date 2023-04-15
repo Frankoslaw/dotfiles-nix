@@ -6,6 +6,7 @@
         # gui
         gtk.enable = true;
         firefox.enable = true;
+        vscode.enable = true;
 
         # cli
         zsh.enable = true;

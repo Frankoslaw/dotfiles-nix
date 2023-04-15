@@ -1,4 +1,4 @@
-{ inputs, lib, config, pkgs, ... }:
+{ lib, config, pkgs, ... }:
 
 with lib;
 let cfg = config.modules.firefox;
@@ -8,6 +8,13 @@ in {
     config = mkIf cfg.enable {
         programs.firefox = {
             enable = true;
+            package = pkgs.firefox.override {
+              # See nixpkgs' firefox/wrapper.nix to check which options you can use
+              cfg = {
+                # Gnome shell native connector
+                enableGnomeExtensions = true;
+              };
+            };
 
             # Install extensions from NUR
             profiles.default = {

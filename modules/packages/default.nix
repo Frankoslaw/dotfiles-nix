@@ -8,7 +8,7 @@ in {
     config = mkIf cfg.enable {
         home.packages = with pkgs; [
             # General
-            vscode google-chrome
+            google-chrome
             caprine-bin discord file
 
             # Office
@@ -32,7 +32,7 @@ in {
             devenv.packages.${system}.devenv
             rust-nix-test.packages.${system}.rust-nix-test
             podman podman-tui podman-compose
-            pods 
+            pods
             
             # Vm + cloud
             tmux vagrant terraform
