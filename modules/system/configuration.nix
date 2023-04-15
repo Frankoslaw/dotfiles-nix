@@ -2,13 +2,21 @@
 
 {
     services.xserver.enable = true;
+    services.xserver.videoDrivers = [ "amdgpu" ];
     services.xserver.displayManager.gdm.enable = true;
     services.xserver.desktopManager.gnome.enable = true;
 
     virtualisation.libvirtd.enable = true;
+    virtualisation.docker.enable = true;
 
     programs.dconf.enable = true;
     programs.zsh.enable = true;
+
+    programs.steam = {
+        enable = true;
+        remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
+        dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
+    };
 
     # Install fonts
     fonts = {
@@ -75,20 +83,19 @@
 
     # Enable sound with pipewire.
     sound.enable = true;
-    hardware.pulseaudio.enable = false;
+    services.pipewire.alsa.support32Bit = true;
+
+    hardware.pulseaudio.enable = true;
+    hardware.opengl.driSupport = true;
+    hardware.opengl.driSupport32Bit = true;
+
     security.rtkit.enable = true;
-    services.pipewire = {
-        enable = true;
-        alsa.enable = true;
-        alsa.support32Bit = true;
-        pulse.enable = true;
-    };
 
     # Define a user account. Don't forget to set a password with ‘passwd’.
     users.users.frankoslaw = {
         isNormalUser = true;
         description = "Franciszek Łopuszański";
-        extraGroups = [ "networkmanager" "input" "wheel" "qemu-libvirtd" "libvirtd" ];
+        extraGroups = [ "networkmanager" "input" "wheel" "qemu-libvirtd" "libvirtd" "docker" ];
         shell = pkgs.zsh;
     };
 

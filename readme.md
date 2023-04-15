@@ -86,3 +86,12 @@ doas nixos-rebuild switch --flake .#yourComputer
 - add OPTIONAL hyperland
 - learn neovim
 - pin nixpkgs for reproducibility
+- fix partitions
+- fix hiberntation
+- move to xen kernel
+- fix qt styling
+- use only certain packages from unstable branch
+- prevent from rebuilding whole tree
+- improve flake support
+- add podman side by side with docker
+- fix pipewire

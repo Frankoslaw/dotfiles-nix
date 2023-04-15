@@ -10,7 +10,7 @@
 
   boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "usb_storage" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-amd" ];
+  boot.kernelModules = [ "kvm-amd" "amdgpu" ];
   boot.extraModulePackages = [ ];
   boot.supportedFilesystems = [ 
     "ntfs" 
@@ -21,6 +21,7 @@
     "fat32"
   ];
 
+  boot.kernelPackages = pkgs.linuxPackages_latest;
   # es8336 patches from https://github.com/codepayne/pop-os-linux
   # boot.kernelPatches = [
   #   {
@@ -52,4 +53,5 @@
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  hardware.enableRedistributableFirmware = true;
 }

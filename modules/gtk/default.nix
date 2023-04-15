@@ -77,7 +77,11 @@ in {
             };
 
             "org/gnome/shell/extensions/user-theme" = {
-                name = "palenight";
+                name = "";
+            };
+
+            "org/gnome/desktop/sound" = {
+                theme-name = "freedesktop";
             };
 
             "org/gnome/desktop/interface" = {
@@ -85,6 +89,12 @@ in {
             };
 
             "org/gnome/desktop/background" = {
+                picture-uri = "file://${../../pics/wallpaper.png}";
+                picture-uri-dark= "file://${../../pics/wallpaper.png}";
+                picture-options = "zoom";
+            };
+
+            "org/gnome/desktop/screensaver" = {
                 picture-uri = "file://${../../pics/wallpaper.png}";
                 picture-uri-dark= "file://${../../pics/wallpaper.png}";
                 picture-options = "zoom";

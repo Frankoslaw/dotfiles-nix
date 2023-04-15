@@ -6,6 +6,7 @@
     imports = [
         # gui
         ./gtk
+        ./firefox
 
         # cli
         ./zsh
