@@ -8,6 +8,10 @@
 
     virtualisation.libvirtd.enable = true;
     virtualisation.docker.enable = true;
+    virtualisation.podman = {
+        enable = true;
+        defaultNetwork.settings.dns_enabled = true;
+    };
 
     programs.dconf.enable = true;
     programs.zsh.enable = true;

@@ -8,7 +8,6 @@ in {
     config = mkIf cfg.enable {
         programs.firefox = {
             enable = true;
-            enableGnomeExtensions = true;
 
             # Install extensions from NUR
             profiles.default = {

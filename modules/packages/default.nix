@@ -31,6 +31,8 @@ in {
             python3 pypy3 bloomrpc nixpkgs-fmt
             devenv.packages.${system}.devenv
             rust-nix-test.packages.${system}.rust-nix-test
+            podman podman-tui podman-compose
+            pods 
             
             # Vm + cloud
             tmux vagrant terraform
@@ -49,9 +51,6 @@ in {
             argo kustomize kops vcluster
             docker-compose lazydocker
             distrobox kompose
-
-            ###
-            fortune
         ];
     };
 }
