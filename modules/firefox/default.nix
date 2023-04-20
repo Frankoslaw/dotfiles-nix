@@ -1,40 +1,43 @@
-{ lib, config, pkgs, ... }:
-
-with lib;
-let cfg = config.modules.firefox;
-
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}:
+with lib; let
+  cfg = config.modules.firefox;
 in {
-    options.modules.firefox = { enable = mkEnableOption "firefox"; };
-    config = mkIf cfg.enable {
-        programs.firefox = {
-            enable = true;
-            package = pkgs.firefox.override {
-              # See nixpkgs' firefox/wrapper.nix to check which options you can use
-              cfg = {
-                # Gnome shell native connector
-                enableGnomeExtensions = true;
-              };
-            };
-
-            # Install extensions from NUR
-            profiles.default = {
-              isDefault = true;
-
-              extensions = with pkgs.nur.repos.rycee.firefox-addons; [
-                ublock-origin
-                tree-style-tab
-                # metamask
-                gsconnect
-                multi-account-containers
-                enhanced-github
-                enhancer-for-youtube
-                clearurls
-                sponsorblock
-                # darkreader
-                h264ify
-                # df-youtube
-            ];
-          };
+  options.modules.firefox = {enable = mkEnableOption "firefox";};
+  config = mkIf cfg.enable {
+    programs.firefox = {
+      enable = true;
+      package = pkgs.firefox.override {
+        # See nixpkgs' firefox/wrapper.nix to check which options you can use
+        cfg = {
+          # Gnome shell native connector
+          enableGnomeExtensions = true;
         };
+      };
+
+      # Install extensions from NUR
+      profiles.default = {
+        isDefault = true;
+
+        extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+          ublock-origin
+          tree-style-tab
+          # metamask
+          gsconnect
+          multi-account-containers
+          enhanced-github
+          enhancer-for-youtube
+          clearurls
+          sponsorblock
+          # darkreader
+          h264ify
+          # df-youtube
+        ];
+      };
     };
+  };
 }

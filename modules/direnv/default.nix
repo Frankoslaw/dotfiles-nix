@@ -1,21 +1,24 @@
-{ pkgs, lib, config, ... }:
-
-with lib;
-let cfg = config.modules.direnv;
-
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
+with lib; let
+  cfg = config.modules.direnv;
 in {
-    options.modules.direnv= { enable = mkEnableOption "direnv"; };
-    config = mkIf cfg.enable {
-        home.packages = with pkgs; [ 
-            direnv 
-            nix-direnv  
-        ];
+  options.modules.direnv = {enable = mkEnableOption "direnv";};
+  config = mkIf cfg.enable {
+    home.packages = with pkgs; [
+      direnv
+      nix-direnv
+    ];
 
-        programs.direnv = {
-            enable = true;
-            nix-direnv.enable = true;
-            enableBashIntegration = true;
-            enableZshIntegration = true;
-        };
+    programs.direnv = {
+      enable = true;
+      nix-direnv.enable = true;
+      enableBashIntegration = true;
+      enableZshIntegration = true;
     };
+  };
 }

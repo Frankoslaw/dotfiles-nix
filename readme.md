@@ -79,4 +79,4 @@ doas nixos-rebuild switch --flake .#yourComputer
 - add nixage for secrets
 - add OPTIONAL hyperland
 - learn neovim
-- use only certain packages from unstable branch
+- debug gpu usage
