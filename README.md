@@ -80,3 +80,9 @@ doas nixos-rebuild switch --flake .#yourComputer
 - add OPTIONAL hyperland
 - learn neovim
 - debug gpu usage
+- flake compat? ( templates / shells )
+- define shelld for:
+  - rust
+  - go
+  - node js
+  - python

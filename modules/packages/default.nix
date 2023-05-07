@@ -1,6 +1,6 @@
 {
   pkgs,
-  unstable,
+  pkgs-unstable,
   lib,
   config,
   devenv,
@@ -20,15 +20,17 @@ in {
       discord
       file
 
+      # Windows
+      pkgs-unstable.bottles
+      wineWowPackages.staging
+      winetricks
+
       # Office
       libreoffice-fresh
       endeavour
-      appflowy
-      standardnotes
       apostrophe
       texlive.combined.scheme-full
       texmaker
-      kile
 
       # Games
       grapejuice
@@ -38,11 +40,12 @@ in {
       protonup-ng
       protontricks
       steam
+      osu-lazer
+      oppai-ng
 
       # Anime
       anime-downloader
-      hakuneko
-      ani-cli
+      pkgs-unstable.ani-cli
       anup
       adl
       filebot
@@ -57,11 +60,9 @@ in {
       gst_all_1.gst-libav
       gst_all_1.gst-plugins-base
       mediainfo
-      unstable.glaxnimate
+      pkgs-unstable.glaxnimate
 
       # Dev
-      python3
-      pypy3
       bloomrpc
       nixpkgs-fmt
       devenv.packages.${system}.devenv
@@ -75,6 +76,11 @@ in {
       android-file-transfer
       jmtpfs
       go-mtpfs
+      asciidoc-full
+      insomnia
+      dbeaver
+      lsof
+      jq
 
       # Vm + cloud
       tmux
@@ -89,14 +95,11 @@ in {
       blender
       obs-studio
       kdenlive
-      openshot-qt
-      lightworks
       shotcut
       pitivi
       gimp
       krita
       frei0r
-      davinci-resolve
 
       # Kubernetes
       k3s
@@ -120,9 +123,9 @@ in {
       kompose
 
       # Math
-      unstable.mathematica
+      pkgs-unstable.mathematica
       graphwar
-      unstable.geogebra
+      pkgs-unstable.geogebra
       jupyter
       python310Packages.jupyter_core
     ];

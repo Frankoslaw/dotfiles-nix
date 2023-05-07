@@ -1,6 +1,6 @@
 {
   pkgs,
-  unstable,
+  pkgs-unstable,
   lib,
   config,
   ...
@@ -10,8 +10,8 @@ with lib; let
 in {
   options.modules.zsh = {enable = mkEnableOption "zsh";};
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [
-      unstable.starship
+    home.packages = with pkgs-unstable; [
+      starship
     ];
 
     programs.zsh = {
@@ -20,6 +20,10 @@ in {
       enableCompletion = true;
 
       initExtra = ''
+        export NVM_DIR="$HOME/.nvm"
+        [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+        [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
         eval "$(starship init zsh)"
       '';
 

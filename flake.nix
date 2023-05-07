@@ -6,7 +6,7 @@
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
     home-manager = {
-      url = "github:nix-community/home-manager";
+      url = "github:nix-community/home-manager/release-22.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -15,7 +15,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    devenv.url = "github:cachix/devenv/latest";
+    devenv = {
+      url = "github:cachix/devenv/latest";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   # All outputs for the system (configs)
@@ -29,9 +32,9 @@
   } @ inputs: let
     system = "x86_64-linux"; #current system
     pkgs = inputs.nixpkgs.legacyPackages.x86_64-linux;
-    unstable = import nixpkgs-unstable {
+    pkgs-unstable = import nixpkgs-unstable {
       inherit system;
-      config = {allowUnfree = true;};
+      config = { allowUnfree = true; };
     };
     formatter = pkgs.alejandra;
 
@@ -55,7 +58,7 @@
             home-manager = {
               useUserPackages = true;
               useGlobalPkgs = true;
-              extraSpecialArgs = {inherit inputs devenv unstable;};
+              extraSpecialArgs = {inherit inputs devenv pkgs-unstable;};
               # Home manager config (configures programs like firefox, zsh, eww, etc)
               users.frankoslaw = ./. + "/hosts/${hostname}/user.nix";
             };
@@ -67,6 +70,7 @@
         specialArgs = {inherit inputs;};
       };
   in {
+    devShell."${system}" = import ./shell.nix { inherit pkgs; };
     nixosConfigurations = {
       # Now, defining a new system is can be done in one line
       #                                Architecture   Hostname

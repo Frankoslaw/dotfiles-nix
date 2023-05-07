@@ -2,6 +2,7 @@
   lib,
   config,
   pkgs,
+  pkgs-unstable,
   ...
 }:
 with lib; let
@@ -9,14 +10,11 @@ with lib; let
 in {
   options.modules.vscode = {enable = mkEnableOption "vscode";};
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [
-      vscode
-    ];
-
     programs.vscode = {
       enable = true;
+      package = pkgs-unstable.vscode;
 
-      extensions = with pkgs.vscode-extensions; [
+      extensions = with pkgs-unstable.vscode-extensions; [
         # Ansible
         bungcip.better-toml
         redhat.vscode-yaml
@@ -34,6 +32,7 @@ in {
         ms-python.python
         ms-python.vscode-pylance
         # eww yuck
+        asciidoctor.asciidoctor-vscode
       ];
 
       userSettings = {

@@ -1,5 +1,6 @@
 {
   pkgs,
+  pkgs-unstable,
   lib,
   config,
   ...
@@ -15,8 +16,8 @@ in {
       gnome.gnome-shell-extensions
       gnome-extension-manager
 
-      gnomeExtensions.pip-on-top
-      gnomeExtensions.media-controls
+      pkgs-unstable.gnomeExtensions.pip-on-top
+      pkgs-unstable.gnomeExtensions.media-controls
       gnomeExtensions.caffeine
       gnomeExtensions.tray-icons-reloaded
       gnomeExtensions.color-picker
