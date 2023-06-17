@@ -2,11 +2,11 @@
   description = "NixOS configuration";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-22.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-23.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-22.11";
+      url = "github:nix-community/home-manager/release-23.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -19,6 +19,21 @@
       url = "github:cachix/devenv/latest";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    aagl = {
+      url = "github:ezKEa/aagl-gtk-on-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    rust-overlay = {
+      url = "github:oxalica/rust-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nix-software-center = {
+      url = "github:vlinkz/nix-software-center";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   # All outputs for the system (configs)
@@ -28,6 +43,8 @@
     nixpkgs-unstable,
     nur,
     devenv,
+    aagl,
+    rust-overlay,
     ...
   } @ inputs: let
     system = "x86_64-linux"; #current system
@@ -44,7 +61,7 @@
     # Credits go to sioodmy on this one!
     # https://github.com/sioodmy/dotfiles/blob/main/flake.nix
     mkSystem = pkgs: system: hostname:
-      pkgs.lib.nixosSystem {
+      lib.makeOverridable lib.nixosSystem {
         system = system;
         modules = [
           {networking.hostName = hostname;}
@@ -58,13 +75,21 @@
             home-manager = {
               useUserPackages = true;
               useGlobalPkgs = true;
-              extraSpecialArgs = {inherit inputs devenv pkgs-unstable;};
+              extraSpecialArgs = {inherit inputs devenv pkgs-unstable; };
               # Home manager config (configures programs like firefox, zsh, eww, etc)
               users.frankoslaw = ./. + "/hosts/${hostname}/user.nix";
             };
             nixpkgs.overlays = [
               nur.overlay
+              rust-overlay.overlays.default
             ];
+          }
+          {
+            imports = [ aagl.nixosModules.default ];
+            nix.settings = aagl.nixConfig;
+            programs.honkers-railway-launcher.enable = true; # Starail
+            programs.anime-game-launcher.enable = false; # Genshin
+            programs.honkers-launcher.enable = false; # Honkai impact
           }
         ];
         specialArgs = {inherit inputs;};

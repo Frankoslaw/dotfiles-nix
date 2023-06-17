@@ -9,11 +9,12 @@
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
 
-  virtualisation.libvirtd.enable = true;
-  virtualisation.docker.enable = true;
-  virtualisation.podman = {
-    enable = true;
-    defaultNetwork.dnsname.enable = true;
+  virtualisation = {
+    libvirtd.enable = true;
+    docker.enable = true;
+    podman.enable = true;
+    # waydroid.enable = true;
+    lxd.enable = true;
   };
 
   programs.dconf.enable = true;
@@ -39,7 +40,6 @@
   boot.loader = {
     grub = {
       enable = true;
-      version = 2;
       device = "nodev";
       useOSProber = true;
       efiSupport = true;
@@ -152,6 +152,10 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    # Nix software center
+    inputs.nix-software-center.packages.${system}.nix-software-center
+
+    wl-clipboard
     vim
     wget
     firefox
@@ -187,5 +191,5 @@
   ];
 
   # Do not touch
-  system.stateVersion = "22.11";
+  system.stateVersion = "23.05";
 }

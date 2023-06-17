@@ -7,18 +7,19 @@
   ...
 }:
 with lib; let
-  cfg =
-    config.modules.packages;
+  cfg = config.modules.packages;
 in {
   options.modules.packages = {enable = mkEnableOption "packages";};
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
       # General
       google-chrome
-      librewolf
+      # librewolf
       caprine-bin
       discord
       file
+      anydesk
+      qbittorrent
 
       # Windows
       pkgs-unstable.bottles
@@ -31,9 +32,11 @@ in {
       apostrophe
       texlive.combined.scheme-full
       texmaker
+      teams
+      obsidian
 
       # Games
-      grapejuice
+      # grapejuice # Roblox no longer works on linux
       steam
       prismlauncher
       heroic
@@ -45,7 +48,7 @@ in {
 
       # Anime
       anime-downloader
-      pkgs-unstable.ani-cli
+      nur.repos.frankoslaw.ani-cli
       anup
       adl
       filebot
@@ -81,6 +84,7 @@ in {
       dbeaver
       lsof
       jq
+      helvum
 
       # Vm + cloud
       tmux
@@ -90,6 +94,7 @@ in {
       virt-viewer
       virt-manager
       gnome.gnome-boxes
+      nixos-shell
 
       # Creative
       blender

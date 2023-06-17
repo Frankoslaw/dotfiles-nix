@@ -19,27 +19,27 @@ in {
         };
       };
 
-      # Install extensions from NUR
-      extensions = with pkgs.nur.repos.rycee.firefox-addons; [
-        ublock-origin
-        tree-style-tab
-        # metamask
-        gsconnect
-        multi-account-containers
-        enhanced-github
-        enhancer-for-youtube
-        clearurls
-        sponsorblock
-        # darkreader
-        h264ify
-        # df-youtube
-        user-agent-string-switcher
-      ];
-
       profiles.default = {
         id = 0;
         name = "Default";
         isDefault = true;
+        
+        # Install extensions from NUR
+        extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+          ublock-origin
+          tree-style-tab
+          # metamask
+          gsconnect
+          multi-account-containers
+          enhanced-github
+          enhancer-for-youtube
+          clearurls
+          sponsorblock
+          # darkreader
+          h264ify
+          # df-youtube
+          user-agent-string-switcher
+        ];
       };
     };
   };
