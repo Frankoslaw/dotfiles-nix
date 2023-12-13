@@ -32,7 +32,7 @@ in {
           gsconnect
           multi-account-containers
           enhanced-github
-          enhancer-for-youtube
+          # enhancer-for-youtube
           clearurls
           sponsorblock
           # darkreader

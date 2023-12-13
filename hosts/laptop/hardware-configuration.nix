@@ -13,8 +13,8 @@
   ];
 
   boot.initrd.availableKernelModules = ["nvme" "xhci_pci" "usb_storage" "sd_mod"];
-  boot.initrd.kernelModules = [];
-  boot.kernelModules = ["kvm-amd" "amdgpu"];
+  boot.initrd.kernelModules = [ "amdgpu" ];
+  boot.kernelModules = ["kvm-amd"];
   boot.extraModulePackages = [];
   boot.supportedFilesystems = [
     "ntfs"
@@ -25,7 +25,7 @@
     "fat32"
   ];
 
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  # boot.kernelPackages = pkgs.linuxPackages_latest;
   # es8336 patches from https://github.com/codepayne/pop-os-linux
   # boot.kernelPatches = [
   #   {
@@ -34,17 +34,18 @@
   #   }
   # ];
 
-  fileSystems."/" = {
-    device = "/dev/disk/by-uuid/0bcb6514-d01d-4fe5-9d77-9a6050ccf071";
-    fsType = "ext4";
-  };
+  fileSystems."/" =
+    { device = "/dev/disk/by-uuid/9ee038a0-936b-4c23-bf07-b920e3cd10f1";
+      fsType = "ext4";
+    };
 
-  fileSystems."/boot/efi" = {
-    device = "/dev/disk/by-uuid/4A4A-0177";
-    fsType = "vfat";
-  };
+  fileSystems."/boot" =
+    { device = "/dev/disk/by-uuid/F1F3-BB35";
+      fsType = "vfat";
+    };
 
-  swapDevices = [{device = "/dev/disk/by-uuid/b80b44e5-7e4a-47d8-b5a7-96079c4268f1";}];
+  swapDevices = [ { device = "/dev/disk/by-uuid/ac643373-d2b0-44f1-8d83-f2358db66c3d"; }];
+
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's

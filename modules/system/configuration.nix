@@ -11,8 +11,11 @@
 
   virtualisation = {
     libvirtd.enable = true;
-    docker.enable = true;
-    podman.enable = true;
+    podman = {
+      enable = true;
+      dockerCompat = true;
+      defaultNetwork.settings.dns_enabled = true;
+    };
     # waydroid.enable = true;
     lxd.enable = true;
   };
@@ -28,7 +31,7 @@
 
   # Install fonts
   fonts = {
-    fonts = with pkgs; [
+    packages = with pkgs; [
       jetbrains-mono
       roboto
       openmoji-color
@@ -191,5 +194,5 @@
   ];
 
   # Do not touch
-  system.stateVersion = "23.05";
+  system.stateVersion = "23.11";
 }

@@ -21,7 +21,7 @@ in {
       gnomeExtensions.caffeine
       gnomeExtensions.tray-icons-reloaded
       gnomeExtensions.color-picker
-      gnomeExtensions.colorful-battery-indicator
+      # gnomeExtensions.colorful-battery-indicator
       gnomeExtensions.tiling-assistant
     ];
 

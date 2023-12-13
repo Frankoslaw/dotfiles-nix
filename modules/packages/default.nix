@@ -32,7 +32,7 @@ in {
       apostrophe
       texlive.combined.scheme-full
       texmaker
-      teams
+      # teams
       obsidian
 
       # Games
@@ -42,8 +42,7 @@ in {
       heroic
       protonup-ng
       protontricks
-      steam
-      osu-lazer
+      # osu-lazer
       oppai-ng
 
       # Anime
@@ -111,7 +110,7 @@ in {
       k3sup
       kube3d
       k9s
-      kubectl
+      # kubectl
       kubergrunt
       kubectl-tree
       kubernetes-helm
@@ -122,17 +121,15 @@ in {
       kustomize
       kops
       vcluster
-      docker-compose
-      lazydocker
       distrobox
       kompose
 
       # Math
-      pkgs-unstable.mathematica
+      # pkgs-unstable.mathematica
       graphwar
       pkgs-unstable.geogebra
       jupyter
-      python310Packages.jupyter_core
+      # python310Packages.jupyter_core
     ];
   };
 }
