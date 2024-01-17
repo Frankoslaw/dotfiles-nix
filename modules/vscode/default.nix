@@ -16,23 +16,55 @@ in {
 
       extensions = with pkgs-unstable.vscode-extensions; [
         # Ansible
-        bungcip.better-toml
         redhat.vscode-yaml
         zxh404.vscode-proto3
+
+        # Cpp
         ms-vscode.cpptools
-        yzhang.markdown-all-in-one
         ms-vscode.cmake-tools
         twxs.cmake
-        tamasfe.even-better-toml
-        oderwat.indent-rainbow
+
+        # Science
+        yzhang.markdown-all-in-one
         ms-toolsai.jupyter
-        pkief.material-icon-theme
+        asciidoctor.asciidoctor-vscode
+        marp-team.marp-vscode
+        james-yu.latex-workshop
+
+        # Rust
+        tamasfe.even-better-toml
+        serayuzgur.crates
+        rust-lang.rust-analyzer
+        
+        # Nix
         bbenoist.nix
         jnoortheen.nix-ide
+        arrterian.nix-env-selector
+
+        # Python 
         ms-python.python
         ms-python.vscode-pylance
-        # eww yuck
-        asciidoctor.asciidoctor-vscode
+
+        # Style
+        oderwat.indent-rainbow
+        pkief.material-icon-theme
+
+        # Other
+        ms-vscode-remote.remote-ssh
+        ms-vscode-remote.remote-containers
+        svelte.svelte-vscode
+        usernamehw.errorlens
+        eamodio.gitlens
+
+        gruntfuggly.todo-tree
+        # icrawl.discord-vscode
+        ms-vscode.hexeditor
+        ritwickdey.liveserver
+        streetsidesoftware.code-spell-checker
+        vadimcn.vscode-lldb
+        # wayou.vscode-todo-highlight
+        # webfreak.debug 
+        tsandall.opa
       ];
 
       userSettings = {
@@ -45,6 +77,7 @@ in {
         "editor.inlayHints.fontFamily" = "'JetBrainsMonoNL Nerd Font Mono'";
         "terminal.integrated.fontFamily" = "'JetBrainsMonoNL Nerd Font Mono', monospace";
         "editor.fontFamily" = "'JetBrainsMonoNL Nerd Font Mono', 'Droid Sans Mono', 'monospace', monospace";
+        "cSpell.enabled" = false;
       };
     };
   };

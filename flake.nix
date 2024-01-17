@@ -1,6 +1,6 @@
 {
   description = "NixOS configuration";
-
+ 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -51,7 +51,13 @@
     pkgs = inputs.nixpkgs.legacyPackages.x86_64-linux;
     pkgs-unstable = import nixpkgs-unstable {
       inherit system;
-      config = { allowUnfree = true; };
+      config = { 
+        allowUnfree = true; 
+        permittedInsecurePackages = [
+          "python-2.7.18.6"
+          "electron-25.9.0"
+        ];
+      };
     };
     formatter = pkgs.alejandra;
 
@@ -103,5 +109,5 @@
     };
 
     formatter.x86_64-linux = pkgs.alejandra;
-  };
+  }; 
 }

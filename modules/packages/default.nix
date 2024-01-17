@@ -14,6 +14,7 @@ in {
     home.packages = with pkgs; [
       # General
       google-chrome
+      microsoft-edge
       # librewolf
       caprine-bin
       discord
@@ -33,7 +34,10 @@ in {
       texlive.combined.scheme-full
       texmaker
       # teams
+      teams-for-linux
       obsidian
+      marp-cli
+      mendeley
 
       # Games
       # grapejuice # Roblox no longer works on linux
@@ -44,6 +48,7 @@ in {
       protontricks
       # osu-lazer
       oppai-ng
+      pkgs-unstable.r2modman
 
       # Anime
       anime-downloader
@@ -63,6 +68,8 @@ in {
       gst_all_1.gst-plugins-base
       mediainfo
       pkgs-unstable.glaxnimate
+      helvum
+      sony-headphones-client
 
       # Dev
       bloomrpc
@@ -83,17 +90,19 @@ in {
       dbeaver
       lsof
       jq
-      helvum
+      rust-bin.stable.latest.default
+      cloc
 
       # Vm + cloud
       tmux
-      vagrant
+      vagrant 
       terraform
       terraformer
       virt-viewer
       virt-manager
       gnome.gnome-boxes
       nixos-shell
+      virtiofsd
 
       # Creative
       blender
@@ -130,6 +139,11 @@ in {
       pkgs-unstable.geogebra
       jupyter
       # python310Packages.jupyter_core
+
+      # Tinkering
+      prusa-slicer
+      kicad
+      freecad
     ];
   };
 }

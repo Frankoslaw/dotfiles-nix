@@ -23,6 +23,8 @@ in {
       gnomeExtensions.color-picker
       # gnomeExtensions.colorful-battery-indicator
       gnomeExtensions.tiling-assistant
+      gnomeExtensions.gsconnect
+      gnomeExtensions.huawei-wmi-controls
     ];
 
     gtk = {
@@ -80,6 +82,8 @@ in {
           "pip-on-top@rafostar.github.com"
           "trayIconsReloaded@selfmade.pl"
           "tiling-assistant@leleat-on-github"
+          "gsconnect@andyholmes.github.io"
+          # "huawei-wmi-controls@"
         ];
 
         favorite-apps = [

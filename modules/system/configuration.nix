@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  pkgs-unstable,
   inputs,
   ...
 }: {
@@ -14,10 +15,12 @@
     podman = {
       enable = true;
       dockerCompat = true;
+      dockerSocket.enable = true;
       defaultNetwork.settings.dns_enabled = true;
     };
     # waydroid.enable = true;
-    lxd.enable = true;
+    docker.enable = false;
+    lxd.enable = false;
   };
 
   programs.dconf.enable = true;
@@ -28,6 +31,8 @@
     remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
     dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
   };
+
+  programs.wireshark.enable = true;
 
   # Install fonts
   fonts = {
@@ -41,16 +46,17 @@
 
   # Bootloader.
   boot.loader = {
-    grub = {
-      enable = true;
-      device = "nodev";
-      useOSProber = true;
-      efiSupport = true;
-    };
+    systemd-boot.enable = true;
+    # grub = {
+    #   enable = true;
+    #   useOSProber = true;
+    #   device = "nodev";
+    #   efiSupport = true;
+    # };
 
     efi = {
       canTouchEfiVariables = true;
-      efiSysMountPoint = "/boot/efi";
+      efiSysMountPoint = "/boot";
     };
   };
 
@@ -59,6 +65,20 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
+  networking.firewall = {
+    enable = true;
+      # for NFSv3; view with `rpcinfo -p`
+    allowedTCPPorts = [ 111 2049 4000 4001 4002 20048 1764 ];
+    allowedUDPPorts = [ 111 2049 4000 4001 4002 20048 1764 ];
+    allowedTCPPortRanges = [
+      # KDE Connect
+      { from = 1714; to = 1764; }
+    ];
+    allowedUDPPortRanges = [
+      # KDE Connect
+      { from = 1714; to = 1764; }
+    ];
+  };
 
   # Set your time zone.
   time.timeZone = "Europe/Warsaw";
@@ -92,6 +112,8 @@
     hplip
     hplipWithPlugin 
   ];
+
+  services.nfs.server.enable = true;
 
   xdg = {
     portal = {
@@ -129,7 +151,7 @@
   users.users.frankoslaw = {
     isNormalUser = true;
     description = "Franciszek Łopuszański";
-    extraGroups = ["networkmanager" "input" "wheel" "qemu-libvirtd" "libvirtd" "docker"];
+    extraGroups = ["networkmanager" "input" "wheel" "qemu-libvirtd" "libvirtd" "docker" "podman" "wireshark"];
     shell = pkgs.zsh;
   };
 
@@ -170,10 +192,11 @@
     nano
     doas
     cachix
+    wireshark
   ];
 
   security = {
-    sudo.enable = false;
+    sudo.enable = true;
     doas = {
       enable = true;
       extraRules = [
@@ -191,6 +214,7 @@
 
   nixpkgs.config.permittedInsecurePackages = [
     "python-2.7.18.6"
+    "electron-25.9.0"
   ];
 
   # Do not touch
