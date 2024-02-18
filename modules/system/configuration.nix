@@ -12,6 +12,7 @@
 
   virtualisation = {
     libvirtd.enable = true;
+    spiceUSBRedirection.enable = true;
     podman = {
       enable = true;
       dockerCompat = true;
@@ -68,8 +69,8 @@
   networking.firewall = {
     enable = true;
       # for NFSv3; view with `rpcinfo -p`
-    allowedTCPPorts = [ 111 2049 4000 4001 4002 20048 1764 ];
-    allowedUDPPorts = [ 111 2049 4000 4001 4002 20048 1764 ];
+    allowedTCPPorts = [ 111 1701 2049 4000 4001 4002 20048 1764 9001 5173 ];
+    allowedUDPPorts = [ 111 1701 2049 4000 4001 4002 20048 1764 9001 5173 ];
     allowedTCPPortRanges = [
       # KDE Connect
       { from = 1714; to = 1764; }
@@ -144,14 +145,16 @@
     driSupport = true;
     driSupport32Bit = true;
   };
+  hardware.rtl-sdr.enable = true;
 
   security.rtkit.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.frankoslaw = {
     isNormalUser = true;
+    autoSubUidGidRange = true;
     description = "Franciszek Łopuszański";
-    extraGroups = ["networkmanager" "input" "wheel" "qemu-libvirtd" "libvirtd" "docker" "podman" "wireshark"];
+    extraGroups = ["networkmanager" "input" "wheel" "qemu-libvirtd" "libvirtd" "docker" "podman" "wireshark" "plugdev"];
     shell = pkgs.zsh;
   };
 
@@ -193,6 +196,7 @@
     doas
     cachix
     wireshark
+    spice-gtk
   ];
 
   security = {
@@ -215,6 +219,7 @@
   nixpkgs.config.permittedInsecurePackages = [
     "python-2.7.18.6"
     "electron-25.9.0"
+    "electron-19.1.9"
   ];
 
   # Do not touch

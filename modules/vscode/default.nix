@@ -12,7 +12,7 @@ in {
   config = mkIf cfg.enable {
     programs.vscode = {
       enable = true;
-      package = pkgs-unstable.vscode;
+      package = pkgs-unstable.vscode-fhs;
 
       extensions = with pkgs-unstable.vscode-extensions; [
         # Ansible
@@ -78,6 +78,8 @@ in {
         "terminal.integrated.fontFamily" = "'JetBrainsMonoNL Nerd Font Mono', monospace";
         "editor.fontFamily" = "'JetBrainsMonoNL Nerd Font Mono', 'Droid Sans Mono', 'monospace', monospace";
         "cSpell.enabled" = false;
+        "dev.containers.dockerPath" = "podman";
+        "lushay.OssCadSuite.path" = "/home/frankoslaw/Documents/programming/projects/fpga_fun/oss-cad-suite/bin";
       };
     };
   };

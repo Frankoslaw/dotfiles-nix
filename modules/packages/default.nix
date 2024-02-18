@@ -46,7 +46,7 @@ in {
       heroic
       protonup-ng
       protontricks
-      # osu-lazer
+      osu-lazer
       oppai-ng
       pkgs-unstable.r2modman
 
@@ -92,6 +92,15 @@ in {
       jq
       rust-bin.stable.latest.default
       cloc
+      openvpn
+      websocat
+      etcher
+      angryipscanner
+      weylus
+      pkgs-unstable.pdfrip
+      ngrok
+      thonny
+      rpi-imager
 
       # Vm + cloud
       tmux
@@ -134,7 +143,7 @@ in {
       kompose
 
       # Math
-      # pkgs-unstable.mathematica
+      # mathematica
       graphwar
       pkgs-unstable.geogebra
       jupyter
@@ -144,6 +153,15 @@ in {
       prusa-slicer
       kicad
       freecad
+
+      # SDR
+      libusb
+      rtl-sdr
+      sdrpp
+      airspy
+      airspyhf
+      soapyairspy
+      gqrx
     ];
   };
 }
