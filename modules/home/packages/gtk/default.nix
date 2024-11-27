@@ -99,14 +99,14 @@ in {
       };
 
       "org/gnome/desktop/background" = {
-        picture-uri = "file://${../../../../pics/wallpaper.png}";
-        picture-uri-dark = "file://${../../../../pics/wallpaper.png}";
+        picture-uri = "file://${../../../../assets/wallpaper.png}";
+        picture-uri-dark = "file://${../../../../assets/wallpaper.png}";
         picture-options = "zoom";
       };
 
       "org/gnome/desktop/screensaver" = {
-        picture-uri = "file://${../../../../pics/wallpaper.png}";
-        picture-uri-dark = "file://${../../../../pics/wallpaper.png}";
+        picture-uri = "file://${../../../../assets/wallpaper.png}";
+        picture-uri-dark = "file://${../../../../assets/wallpaper.png}";
         picture-options = "zoom";
       };
 

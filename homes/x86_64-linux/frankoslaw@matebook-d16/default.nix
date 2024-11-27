@@ -26,6 +26,7 @@ with lib.${namespace}; {
   dotfiles.suites = {
     dev.enable = true;
     gaming.enable = true;
+    k3s.enable = true;
     media.enable = true;
     office.enable = true;
   };

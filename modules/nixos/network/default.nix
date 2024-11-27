@@ -31,9 +31,8 @@ in {
       wifi.backend = "iwd";
     };
 
-    networking.extraHosts =
-      ''
-        109.199.97.139 contabo.local
-      '';
+    networking.extraHosts = ''
+      109.199.97.139 contabo.local
+    '';
   };
 }

@@ -32,6 +32,7 @@ in {
       filezilla
       toolbox
       rust-bin.stable.latest.default
+      lens
     ];
 
     lib.dotfiles.programs = {
