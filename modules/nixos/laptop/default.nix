@@ -15,12 +15,9 @@ in {
   config = mkIf cfg.enable {
     powerManagement = {
       inherit (cfg) enable;
-
-      powertop.enable = true;
     };
 
     services.power-profiles-daemon.enable = false;
-
     services.tlp = {
       inherit (cfg) enable;
 
@@ -32,10 +29,6 @@ in {
 
         CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
         CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
-
-        extraConfig = ''
-        USB_AUTOSUSPEND=0
-        '';
       };
     };
   };
