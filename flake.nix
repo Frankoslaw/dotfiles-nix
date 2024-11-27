@@ -61,13 +61,13 @@
       ];
 
       deploy.nodes = {
-        contabo-homelab = {
-          hostname = "contabo-homelab";
+        homelab-contabo = {
+          hostname = "homelab-contabo";
           profiles.system = {
             user = "root";
             sshUser = "frankoslaw";
             remoteBuild = true;
-            path = inputs.deploy-rs.lib.x86_64-linux.activate.nixos inputs.self.nixosConfigurations.contabo-homelab;
+            path = inputs.deploy-rs.lib.x86_64-linux.activate.nixos inputs.self.nixosConfigurations.homelab-contabo;
           };
         };
       };

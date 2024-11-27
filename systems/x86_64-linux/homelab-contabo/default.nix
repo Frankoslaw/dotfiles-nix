@@ -8,7 +8,7 @@
 with lib;
 with lib.${namespace}; {
   imports = [./hardware-configuration.nix];
-  networking.hostName = "contabo-homelab";
+  networking.hostName = "homelab-contabo";
   networking.domain = "contaboserver.net";
 
   dotfiles = {
