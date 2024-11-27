@@ -13,5 +13,6 @@ pkgs.mkShell {
     pre-commit
     python310
     python310Packages.pre-commit-hooks
+    deploy-rs
   ];
 }

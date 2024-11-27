@@ -28,7 +28,7 @@ in {
     # TODO: Add ports to specific systems
     networking.firewall = {
       inherit (cfg) enable;
-      allowedTCPPorts = [];
+      allowedTCPPorts = [ 22 ];
       allowedUDPPorts = [];
     };
   };

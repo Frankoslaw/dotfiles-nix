@@ -54,6 +54,7 @@ with lib.${namespace}; {
     btop
     usbutils
     pciutils
+    deploy-rs
   ];
 
   system.stateVersion = "24.05";

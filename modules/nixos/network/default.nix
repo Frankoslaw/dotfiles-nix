@@ -30,5 +30,10 @@ in {
       inherit (cfg) enable;
       wifi.backend = "iwd";
     };
+
+    networking.extraHosts =
+      ''
+        109.199.97.139 contabo.local
+      '';
   };
 }

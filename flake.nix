@@ -20,6 +20,11 @@
       url = "github:oxalica/rust-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    deploy-rs = {
+      url = "github:serokell/deploy-rs";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs: let
@@ -54,5 +59,23 @@
       systems.modules.nixos = with inputs; [
         home-manager.nixosModules.home-manager
       ];
+
+      deploy.nodes = {
+        contabo-homelab = {
+          hostname = "contabo-homelab";
+          profiles.system = {
+            user = "root";
+            sshUser = "frankoslaw";
+            remoteBuild = true;
+            path = inputs.deploy-rs.lib.x86_64-linux.activate.nixos inputs.self.nixosConfigurations.contabo-homelab;
+          };
+        };
+      };
+
+      checks =
+        builtins.mapAttrs
+        (system: deploy-lib:
+          deploy-lib.deployChecks inputs.self.deploy)
+        inputs.deploy-rs.lib;
     };
 }
