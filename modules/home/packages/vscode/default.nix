@@ -64,6 +64,7 @@ in {
         "editor.fontFamily" = "'JetBrainsMonoNL Nerd Font Mono', 'Droid Sans Mono', 'monospace', monospace";
         "cSpell.enabled" = false;
         "dev.containers.dockerPath" = "podman";
+        "redhat.telemetry.enabled" = false;
       };
     };
   };

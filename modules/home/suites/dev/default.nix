@@ -32,6 +32,7 @@ in {
       filezilla
       toolbox
       lens
+      devenv
     ];
 
     lib.dotfiles.programs = {
