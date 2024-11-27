@@ -25,6 +25,11 @@
       url = "github:serokell/deploy-rs";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nix-ld = {
+      url = "github:Mic92/nix-ld";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs: let
@@ -58,6 +63,8 @@
 
       systems.modules.nixos = with inputs; [
         home-manager.nixosModules.home-manager
+        nix-ld.nixosModules.nix-ld
+        { programs.nix-ld.dev.enable = true; }
       ];
 
       deploy.nodes = {

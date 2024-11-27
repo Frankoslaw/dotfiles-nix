@@ -4,7 +4,7 @@
   lib,
   ...
 }: let
-  inherit (lib) mkEnableOption mkIf;
+  inherit (lib) mkEnableOption mkIf mkAfter;
 
   cfg = config.dotfiles.ssh;
 in {
@@ -22,6 +22,10 @@ in {
         UseDns = true;
         PermitRootLogin = "prohibit-password";
       };
+    };
+
+    networking.firewall = {
+      allowedTCPPorts = mkAfter [ 22 ];
     };
   };
 }

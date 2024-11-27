@@ -25,10 +25,8 @@ in {
       protectKernelImage = true;
     };
 
-    # TODO: Add ports to specific systems
     networking.firewall = {
       inherit (cfg) enable;
-      allowedTCPPorts = [22 6443];
     };
   };
 }

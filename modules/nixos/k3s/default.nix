@@ -4,7 +4,7 @@
   lib,
   ...
 }: let
-  inherit (lib) mkEnableOption mkIf;
+  inherit (lib) mkEnableOption mkIf mkAfter;
 
   cfg = config.dotfiles.k3s;
 in {
@@ -20,6 +20,10 @@ in {
       extraFlags = toString [
         "--disable=traefik"
       ];
+    };
+
+    networking.firewall = {
+      allowedTCPPorts = mkAfter [ 80 443 6443 ];
     };
   };
 }

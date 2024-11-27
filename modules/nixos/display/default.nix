@@ -62,7 +62,6 @@ in {
       };
     };
 
-    # TODO: Split into apropiate parts
     environment.variables = rec {
       NIXOS_CONFIG = "$HOME/.config/nixos/configuration.nix";
       NIXOS_CONFIG_DIR = "$HOME/.config/nixos/";
