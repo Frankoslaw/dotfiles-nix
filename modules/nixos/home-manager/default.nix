@@ -1,11 +1,12 @@
-{ config, lib, ... }:
-
-let
+{
+  config,
+  lib,
+  ...
+}: let
   inherit (lib) mkEnableOption mkIf;
 
   cfg = config.dotfiles.home-manager;
-in
-{
+in {
   options.dotfiles.home-manager = {
     enable = mkEnableOption "home-manager";
   };

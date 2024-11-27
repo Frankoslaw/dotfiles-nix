@@ -5,15 +5,15 @@
   inputs,
   ...
 }: let
-    inherit (lib) mkEnableOption mkIf;
+  inherit (lib) mkEnableOption mkIf;
 
-    cfg = config.dotfiles.packages.vscode;
+  cfg = config.dotfiles.packages.vscode;
 in {
-    options.dotfiles.packages.vscode = {
-        enable = mkEnableOption "vscode";
-    };
+  options.dotfiles.packages.vscode = {
+    enable = mkEnableOption "vscode";
+  };
 
-    config = mkIf cfg.enable {
+  config = mkIf cfg.enable {
     programs.vscode = {
       inherit (cfg) enable;
       package = pkgs.vscode.fhs;
@@ -33,7 +33,7 @@ in {
         tamasfe.even-better-toml
         serayuzgur.crates
         rust-lang.rust-analyzer
-        
+
         bbenoist.nix
         jnoortheen.nix-ide
         arrterian.nix-env-selector

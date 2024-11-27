@@ -4,26 +4,26 @@
   lib,
   ...
 }: let
-    inherit (lib) mkEnableOption mkIf;
+  inherit (lib) mkEnableOption mkIf;
 
-    cfg = config.dotfiles.boot;
+  cfg = config.dotfiles.boot;
 in {
-    options.dotfiles.boot = {
-        enable = mkEnableOption "Booting";
+  options.dotfiles.boot = {
+    enable = mkEnableOption "Booting";
+  };
+
+  config = mkIf cfg.enable {
+    boot.loader = {
+      systemd-boot = {
+        inherit (cfg) enable;
+      };
+
+      efi = {
+        canTouchEfiVariables = true;
+        efiSysMountPoint = "/boot";
+      };
     };
 
-    config = mkIf cfg.enable {
-        boot.loader = {
-            systemd-boot = {
-                inherit (cfg) enable;
-            };
-
-            efi = {
-                canTouchEfiVariables = true;
-                efiSysMountPoint = "/boot";
-            };
-        };
-
-        time.hardwareClockInLocalTime = true;
-    };
+    time.hardwareClockInLocalTime = true;
+  };
 }

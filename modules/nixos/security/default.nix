@@ -4,32 +4,32 @@
   lib,
   ...
 }: let
-    inherit (lib) mkEnableOption mkIf;
+  inherit (lib) mkEnableOption mkIf;
 
-    cfg = config.dotfiles.security;
+  cfg = config.dotfiles.security;
 in {
-    options.dotfiles.security = {
-        enable = mkEnableOption "Securitying";
+  options.dotfiles.security = {
+    enable = mkEnableOption "Securitying";
+  };
+
+  config = mkIf cfg.enable {
+    security = {
+      rtkit = {
+        inherit (cfg) enable;
+      };
+
+      sudo = {
+        inherit (cfg) enable;
+      };
+
+      protectKernelImage = true;
     };
 
-    config = mkIf cfg.enable {
-        security = {
-            rtkit = {
-                inherit (cfg) enable;
-            };
-
-            sudo = {
-                inherit (cfg) enable;
-            };
-
-            protectKernelImage = true;
-        };
-
-        # TODO: Add ports to specific systems
-        networking.firewall = {
-            inherit (cfg) enable;
-            allowedTCPPorts = [];
-            allowedUDPPorts = [];
-        };
+    # TODO: Add ports to specific systems
+    networking.firewall = {
+      inherit (cfg) enable;
+      allowedTCPPorts = [];
+      allowedUDPPorts = [];
     };
+  };
 }
