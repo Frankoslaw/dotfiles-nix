@@ -14,8 +14,15 @@ in {
 
   config = mkIf cfg.enable {
     nix = {
-      settings.auto-optimise-store = true;
-      settings.allowed-users = ["frankoslaw"];
+      settings = {
+        auto-optimise-store = true;
+        allowed-users = ["frankoslaw"];
+        trusted-users = [
+          "root"
+          "frankoslaw"
+          "@wheel"
+        ];
+      };
 
       gc = {
         automatic = true;

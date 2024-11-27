@@ -31,6 +31,7 @@ in {
       imhex
       filezilla
       toolbox
+      rust-bin.stable.latest.default
     ];
 
     lib.dotfiles.programs = {

@@ -28,6 +28,14 @@ with lib.${namespace}; {
   boot.tmp.cleanOnBoot = true;
   zramSwap.enable = true;
 
+  security.sudo.extraRules= [{  
+    users = [ "frankoslaw" ];
+    commands = [{ 
+      command = "ALL" ;
+      options= [ "NOPASSWD" ];
+    }];
+  }];
+
   services.openssh.enable = true;
   users.users = {
     root = {
