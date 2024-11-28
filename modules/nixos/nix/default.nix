@@ -13,6 +13,8 @@ in {
   };
 
   config = mkIf cfg.enable {
+    programs.nix-ld.dev.enable = true;
+    
     nix = {
       settings = {
         auto-optimise-store = true;

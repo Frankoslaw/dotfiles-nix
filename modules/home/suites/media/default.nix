@@ -12,7 +12,7 @@ in {
     enable = mkEnableOption "media suite";
   };
 
-  config = mkIf cfg.enable {
+  config = mkIf cfg.enable {    
     home.packages = with pkgs; [
       mpv
       vlc
@@ -20,6 +20,8 @@ in {
       gimp
       inkscape
       kdenlive
+      youtube-music
+      ani-cli
     ];
   };
 }

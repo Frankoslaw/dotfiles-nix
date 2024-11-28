@@ -62,9 +62,8 @@
       ];
 
       systems.modules.nixos = with inputs; [
-        home-manager.nixosModules.home-manager
         nix-ld.nixosModules.nix-ld
-        { programs.nix-ld.dev.enable = true; }
+        home-manager.nixosModules.home-manager
       ];
 
       deploy.nodes = {

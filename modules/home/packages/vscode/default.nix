@@ -31,7 +31,7 @@ in {
         james-yu.latex-workshop
 
         tamasfe.even-better-toml
-        serayuzgur.crates
+        serayuzgur.crates # TODO: when unstable is fixed enable vscode-extensions.fill-labs.dependi
         rust-lang.rust-analyzer
 
         bbenoist.nix
