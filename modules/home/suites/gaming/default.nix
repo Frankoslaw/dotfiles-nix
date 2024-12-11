@@ -24,6 +24,9 @@ in {
       r2modman
       prismlauncher
       haguichi
+      lime3ds
+      melonDS
+      gogdl
     ];
   };
 }

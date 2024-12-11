@@ -17,9 +17,6 @@ in {
       inherit (cfg) enable;
       role = "server";
       # tokenFile = "file://${../../../assets/wallpaper.png}";
-      extraFlags = toString [
-        "--disable=traefik"
-      ];
     };
 
     networking.firewall = {

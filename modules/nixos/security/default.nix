@@ -4,7 +4,7 @@
   lib,
   ...
 }: let
-  inherit (lib) mkEnableOption mkIf;
+  inherit (lib) mkEnableOption mkIf mkAfter;
 
   cfg = config.dotfiles.security;
 in {
@@ -27,6 +27,8 @@ in {
 
     networking.firewall = {
       inherit (cfg) enable;
+      allowedTCPPorts = mkAfter [ 53 67 68 ];
+      allowedUDPPorts = mkAfter [ 53 67 68 ];
     };
   };
 }

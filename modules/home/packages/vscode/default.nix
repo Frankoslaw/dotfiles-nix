@@ -31,12 +31,13 @@ in {
         james-yu.latex-workshop
 
         tamasfe.even-better-toml
-        serayuzgur.crates # TODO: when unstable is fixed enable vscode-extensions.fill-labs.dependi
+        fill-labs.dependi
         rust-lang.rust-analyzer
+        vadimcn.vscode-lldb
+        # TODO: Slint.slint
 
         bbenoist.nix
         jnoortheen.nix-ide
-        arrterian.nix-env-selector
 
         ms-python.python
         ms-python.vscode-pylance

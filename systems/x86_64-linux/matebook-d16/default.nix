@@ -57,5 +57,30 @@ with lib.${namespace}; {
     deploy-rs
   ];
 
+  services.udev.extraRules = ''
+    SUBSYSTEM=="net", ACTION=="add", ATTR{address}=="f8:e4:3b:e8:f5:96", NAME="eth0"
+  '';
+
+  networking = {
+    networkmanager.unmanaged = ["mac:f8:e4:3b:e8:f5:96"];
+
+    firewall = {
+      allowedTCPPorts = mkAfter [ 80 443 ];
+
+      extraCommands = ''
+        iptables -t nat -A POSTROUTING -o wlan0 -j MASQUERADE
+        iptables -A INPUT -i eth0 -j ACCEPT
+      '';
+    };
+  };
+
+  networking.interfaces."eth0" = {
+    useDHCP = false;
+    ipv4.addresses = [{
+      address = "10.0.0.1";
+      prefixLength = 24;
+    }];
+  };
+  
   system.stateVersion = "24.05";
 }

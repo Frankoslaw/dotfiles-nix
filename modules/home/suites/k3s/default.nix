@@ -16,7 +16,7 @@ in {
     home.packages = with pkgs; [
       k3s
       k3d
-      helm
+      kubernetes-helm
       fluxcd
       k9s
       kustomize

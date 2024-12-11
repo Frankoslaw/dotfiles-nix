@@ -20,6 +20,7 @@ in {
       texstudio
       xmind
       anki-bin
+      libreoffice-fresh
     ];
 
     programs.firefox.enable = true;
