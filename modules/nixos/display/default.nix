@@ -45,11 +45,8 @@ in {
       ];
     };
 
-    hardware.opengl = {
+    hardware.graphics = {
       inherit (cfg) enable;
-
-      driSupport = true;
-      driSupport32Bit = true;
     };
 
     xdg = {

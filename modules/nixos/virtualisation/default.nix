@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }: let
   inherit (lib) mkEnableOption mkIf;
@@ -16,6 +17,15 @@ in {
     virtualisation = {
       libvirtd = {
         inherit (cfg.libvirtd) enable;
+
+        qemu = {
+          package = pkgs.qemu_kvm;
+          vhostUserPackages = with pkgs; [ virtiofsd ];
+
+          ovmf = {
+            enable = true;
+          };
+        };
       };
       spiceUSBRedirection = {
         inherit (cfg.libvirtd) enable;

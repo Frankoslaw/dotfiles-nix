@@ -9,7 +9,7 @@
   cfg = config.dotfiles.security;
 in {
   options.dotfiles.security = {
-    enable = mkEnableOption "Securitying";
+    enable = mkEnableOption "Security";
   };
 
   config = mkIf cfg.enable {
@@ -27,8 +27,12 @@ in {
 
     networking.firewall = {
       inherit (cfg) enable;
-      allowedTCPPorts = mkAfter [ 53 67 68 ];
+      allowedTCPPorts = mkAfter [ 53 67 68 16509 ];
       allowedUDPPorts = mkAfter [ 53 67 68 ];
+      allowedTCPPortRanges = [
+        # spice
+        { from = 5900; to = 5999; }
+      ];
     };
   };
 }

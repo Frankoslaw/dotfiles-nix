@@ -18,6 +18,7 @@ in {
       thonny
       stm32cubemx
       kicad
+      easyeda2kicad
       prusa-slicer
       ghidra
       dbeaver-bin

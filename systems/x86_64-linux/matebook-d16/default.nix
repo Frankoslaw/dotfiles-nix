@@ -46,6 +46,7 @@ with lib.${namespace}; {
 
   programs.dconf.enable = true;
   programs.wireshark.enable = true;
+  programs.virt-manager.enable = true;
 
   environment.systemPackages = with pkgs; [
     vim
@@ -55,6 +56,8 @@ with lib.${namespace}; {
     usbutils
     pciutils
     deploy-rs
+    wget
+    neofetch
   ];
 
   services.udev.extraRules = ''
@@ -82,5 +85,5 @@ with lib.${namespace}; {
     }];
   };
   
-  system.stateVersion = "24.05";
+  system.stateVersion = "24.11";
 }
