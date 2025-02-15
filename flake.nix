@@ -53,7 +53,6 @@
 
       channels-config = {
         allowUnfree = true;
-        permittedInsecurePackages = ["qbittorrent-4.6.4"];
       };
 
       overlays = with inputs; [
@@ -67,13 +66,13 @@
       ];
 
       deploy.nodes = {
-        homelab-contabo = {
-          hostname = "homelab-contabo";
+        homelab-ms7970 = {
+          hostname = "homelab-ms7970";
           profiles.system = {
             user = "root";
             sshUser = "frankoslaw";
             remoteBuild = true;
-            path = inputs.deploy-rs.lib.x86_64-linux.activate.nixos inputs.self.nixosConfigurations.homelab-contabo;
+            path = inputs.deploy-rs.lib.x86_64-linux.activate.nixos inputs.self.nixosConfigurations.homelab-ms7970;
           };
         };
       };

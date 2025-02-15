@@ -27,12 +27,7 @@ in {
 
     networking.firewall = {
       inherit (cfg) enable;
-      allowedTCPPorts = mkAfter [ 53 67 68 16509 ];
-      allowedUDPPorts = mkAfter [ 53 67 68 ];
-      allowedTCPPortRanges = [
-        # spice
-        { from = 5900; to = 5999; }
-      ];
+      allowedTCPPorts = mkAfter [ 22 ];
     };
   };
 }

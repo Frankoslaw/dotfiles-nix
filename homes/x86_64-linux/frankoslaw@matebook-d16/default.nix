@@ -7,10 +7,6 @@
 with lib;
 with lib.${namespace}; {
   home.packages = with pkgs; [
-    helvum
-    powertop
-    slack
-    telegram-desktop
     caprine-bin
     vesktop
   ];
@@ -26,10 +22,9 @@ with lib.${namespace}; {
   dotfiles.suites = {
     dev.enable = true;
     gaming.enable = true;
-    k3s.enable = true;
     media.enable = true;
     office.enable = true;
   };
 
-  home.stateVersion = "24.05";
+  home.stateVersion = "24.11";
 }

@@ -8,13 +8,13 @@
 with lib;
 with lib.${namespace}; {
   imports = [./hardware-configuration.nix];
-  networking.hostName = "homelab-contabo";
-  networking.domain = "contaboserver.net";
+  networking.hostName = "homelab-ms7970";
 
   dotfiles = {
+    boot.enable = true;
     home-manager.enable = true;
-    k3s.enable = true;
     locale.enable = true;
+    wireless.enable = true;
     nix.enable = true;
     security.enable = true;
     ssh.enable = true;
@@ -27,20 +27,7 @@ with lib.${namespace}; {
     };
   };
 
-  boot.tmp.cleanOnBoot = true;
   zramSwap.enable = true;
-
-  security.sudo.extraRules = [
-    {
-      users = ["frankoslaw"];
-      commands = [
-        {
-          command = "ALL";
-          options = ["NOPASSWD"];
-        }
-      ];
-    }
-  ];
 
   users.users = {
     root = {
@@ -66,6 +53,21 @@ with lib.${namespace}; {
     git
     btop
   ];
+
+  networking.defaultGateway = "192.168.1.1";
+  networking.nameservers = [ "8.8.8.8" ];
+
+  networking.interfaces."wlan0" = {
+    ipv4.addresses = [{
+      address = "192.168.0.95";
+      prefixLength = 24;
+    }];
+  };
+
+  # TODO: Obfucate this ssid
+  networking.wireless.networks = {
+    ZTE_4F9FDF.psk = builtins.readFile /etc/nixos/secrets/ZTE_4F9FDF;
+  };
 
   system.stateVersion = "24.11";
 }

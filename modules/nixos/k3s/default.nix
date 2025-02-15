@@ -16,7 +16,7 @@ in {
     services.k3s = {
       inherit (cfg) enable;
       role = "server";
-      # tokenFile = "file://${../../../assets/wallpaper.png}";
+      # TODO: tokenFile = "file://${../../../assets/wallpaper.png}";
     };
 
     networking.firewall = {
