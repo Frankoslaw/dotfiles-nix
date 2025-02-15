@@ -26,8 +26,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nix-ld = {
-      url = "github:Mic92/nix-ld";
+    disko = {
+      url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -56,12 +56,12 @@
       };
 
       overlays = with inputs; [
-        nur.overlay
+        nur.overlays.default
         rust-overlay.overlays.default
       ];
 
       systems.modules.nixos = with inputs; [
-        nix-ld.nixosModules.nix-ld
+        disko.nixosModules.disko
         home-manager.nixosModules.home-manager
       ];
 

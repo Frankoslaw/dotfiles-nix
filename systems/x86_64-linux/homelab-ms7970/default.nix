@@ -1,4 +1,5 @@
 {
+  inputs,
   config,
   pkgs,
   lib,
@@ -7,11 +8,20 @@
 }:
 with lib;
 with lib.${namespace}; {
-  imports = [./hardware-configuration.nix];
-  networking.hostName = "homelab-ms7970";
+  imports = [
+    ./disko-config.nix 
+    ./hardware-configuration.nix 
+  ];
+
+  boot.loader.grub = {
+    enable = true;
+    efiSupport = true;
+    efiInstallAsRemovable = true;
+    device = "nodev";
+  };
 
   dotfiles = {
-    boot.enable = true;
+    # boot.enable = true;
     home-manager.enable = true;
     locale.enable = true;
     wireless.enable = true;
@@ -54,6 +64,7 @@ with lib.${namespace}; {
     btop
   ];
 
+  networking.hostName = "homelab-ms7970";
   networking.defaultGateway = "192.168.1.1";
   networking.nameservers = [ "8.8.8.8" ];
 
@@ -66,7 +77,7 @@ with lib.${namespace}; {
 
   # TODO: Obfucate this ssid
   networking.wireless.networks = {
-    ZTE_4F9FDF.psk = builtins.readFile /etc/nixos/secrets/ZTE_4F9FDF;
+    ZTE_4F9FDF.psk = "TODO";
   };
 
   system.stateVersion = "24.11";
