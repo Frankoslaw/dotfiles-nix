@@ -4,6 +4,7 @@
   pkgs,
   lib,
   namespace,
+  secretspath,
   ...
 }:
 with lib;
@@ -13,6 +14,7 @@ with lib.${namespace}; {
     ./hardware-configuration.nix 
   ];
 
+  boot.loader.timeout = 0;
   boot.loader.grub = {
     enable = true;
     efiSupport = true;
@@ -22,22 +24,50 @@ with lib.${namespace}; {
 
   dotfiles = {
     # boot.enable = true;
+    display = {
+      enable = true;
+      videoDrivers = ["nvidia"];
+    };
     home-manager.enable = true;
     locale.enable = true;
-    wireless.enable = true;
+    wireless = {
+      enable = true;
+      iwd = true;
+      networkmanager = true;
+    };
     nix.enable = true;
     security.enable = true;
+    sops.enable = true;
     ssh.enable = true;
     virtualisation = {
+      docker.enable = true;
       podman.enable = true;
+      libvirtd.enable = true;
     };
     zsh = {
       enable = true;
       ohMyZsh.enable = true;
     };
+    sunshine.enable = true;
   };
 
-  zramSwap.enable = true;
+  hardware.graphics = {
+    enable = true;
+    enable32Bit = true;
+    extraPackages = [ pkgs.nvidia-vaapi-driver ];
+  };
+  hardware.nvidia = {
+    modesetting.enable = true;
+    powerManagement.enable = false;
+    powerManagement.finegrained = false;
+    open = false;
+    nvidiaSettings = true;
+    package = config.boot.kernelPackages.nvidiaPackages.stable;
+  };
+
+  sops.secrets.frankoslaw_passwd = {
+    neededForUsers = true;
+  };
 
   users.users = {
     root = {
@@ -50,11 +80,13 @@ with lib.${namespace}; {
       isNormalUser = true;
       autoSubUidGidRange = true;
       description = "Franciszek Lopuszanski";
-      extraGroups = ["wheel" "podman"];
+      hashedPasswordFile = config.sops.secrets.frankoslaw_passwd.path;
+      extraGroups = ["wheel" "networkmanager" "podman" "audio" "video" "input" "render" "docker"];
       shell = pkgs.zsh;
     };
   };
 
+  programs.nix-ld.enable = true;
   programs.dconf.enable = true;
 
   environment.systemPackages = with pkgs; [
@@ -62,23 +94,12 @@ with lib.${namespace}; {
     nano
     git
     btop
+    usbutils
+    pciutils
+    wget
+    neofetch
+    cowsay
   ];
-
-  networking.hostName = "homelab-ms7970";
-  networking.defaultGateway = "192.168.1.1";
-  networking.nameservers = [ "8.8.8.8" ];
-
-  networking.interfaces."wlan0" = {
-    ipv4.addresses = [{
-      address = "192.168.0.95";
-      prefixLength = 24;
-    }];
-  };
-
-  # TODO: Obfucate this ssid
-  networking.wireless.networks = {
-    ZTE_4F9FDF.psk = "TODO";
-  };
 
   system.stateVersion = "24.11";
 }

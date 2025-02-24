@@ -30,6 +30,16 @@
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nix-secrets = {
+      url = "git+ssh://git@github.com/Frankoslaw/nix-secrets?shallow=1&ref=main";
+      flake = false;
+    };
   };
 
   outputs = inputs: let
@@ -61,16 +71,17 @@
       ];
 
       systems.modules.nixos = with inputs; [
+        sops-nix.nixosModules.sops
         disko.nixosModules.disko
         home-manager.nixosModules.home-manager
       ];
 
       deploy.nodes = {
         homelab-ms7970 = {
-          hostname = "homelab-ms7970";
+          hostname = "homelab-ms7970.local";
           profiles.system = {
             user = "root";
-            sshUser = "frankoslaw";
+            sshUser = "root";
             remoteBuild = true;
             path = inputs.deploy-rs.lib.x86_64-linux.activate.nixos inputs.self.nixosConfigurations.homelab-ms7970;
           };

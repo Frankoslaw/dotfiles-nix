@@ -14,5 +14,7 @@ pkgs.mkShell {
     python310
     python310Packages.pre-commit-hooks
     deploy-rs
+    nixos-anywhere
+    ssh-to-age
   ];
 }

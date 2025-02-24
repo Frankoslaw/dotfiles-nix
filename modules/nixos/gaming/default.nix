@@ -17,13 +17,15 @@ in {
 
     programs = {
       gamemode = {
-        inherit (cfg) enable;
+        enable = true;
+        enableRenice = true;
       };
 
       steam = {
-        inherit (cfg) enable;
+        enable = true;
 
         remotePlay.openFirewall = true;
+        gamescopeSession.enable = true;
         extraCompatPackages = [pkgs.proton-ge-bin];
       };
     };

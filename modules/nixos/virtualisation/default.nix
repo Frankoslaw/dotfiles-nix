@@ -9,6 +9,7 @@
   cfg = config.dotfiles.virtualisation;
 in {
   options.dotfiles.virtualisation = {
+    docker.enable = mkEnableOption "Docker";
     podman.enable = mkEnableOption "Podman";
     libvirtd.enable = mkEnableOption "libvirtd";
   };
@@ -27,17 +28,18 @@ in {
           };
         };
       };
+
       spiceUSBRedirection = {
         inherit (cfg.libvirtd) enable;
       };
 
       podman = mkIf cfg.podman.enable {
         inherit (cfg.podman) enable;
-
         defaultNetwork.settings.dns_enabled = true;
-        dockerSocket = {
-          inherit (cfg.podman) enable;
-        };
+      };
+
+      docker = mkIf cfg.docker.enable {
+        inherit (cfg.docker) enable;
       };
     };
   };

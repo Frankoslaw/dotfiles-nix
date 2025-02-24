@@ -27,12 +27,12 @@ in {
 
         yzhang.markdown-all-in-one
         ms-toolsai.jupyter
-        marp-team.marp-vscode
-        james-yu.latex-workshop
+        # marp-team.marp-vscode
+        # james-yu.latex-workshop
 
         tamasfe.even-better-toml
         fill-labs.dependi
-        rust-lang.rust-analyzer
+        # TODO FIX: rust-lang.rust-analyzer
         vadimcn.vscode-lldb
         # TODO: Slint.slint
 
@@ -53,7 +53,6 @@ in {
         gruntfuggly.todo-tree
         ms-vscode.hexeditor
         ritwickdey.liveserver
-        streetsidesoftware.code-spell-checker
       ];
 
       userSettings = {
@@ -63,7 +62,6 @@ in {
         "editor.inlayHints.fontFamily" = "'JetBrainsMonoNL Nerd Font Mono'";
         "terminal.integrated.fontFamily" = "'JetBrainsMonoNL Nerd Font Mono', monospace";
         "editor.fontFamily" = "'JetBrainsMonoNL Nerd Font Mono', 'Droid Sans Mono', 'monospace', monospace";
-        "cSpell.enabled" = false;
         "dev.containers.dockerPath" = "podman";
         "redhat.telemetry.enabled" = false;
       };

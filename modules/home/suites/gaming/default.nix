@@ -21,11 +21,7 @@ in {
       protontricks
       protonup-qt
       protonup-ng
-      r2modman
       prismlauncher
-      haguichi
-      lime3ds
-      melonDS
       gogdl
     ];
   };

@@ -19,8 +19,6 @@ in {
       krita
       gimp
       inkscape
-      kdenlive
-      youtube-music
       ani-cli
     ];
   };

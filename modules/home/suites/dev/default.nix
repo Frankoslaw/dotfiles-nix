@@ -14,7 +14,6 @@ in {
 
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
-      eclipses.eclipse-java
       thonny
       stm32cubemx
       kicad
@@ -24,7 +23,9 @@ in {
       dbeaver-bin
       sqlitebrowser
       insomnia
-      wireshark
+      docker-compose
+      lazydocker
+      x11docker
       podman-tui
       podman-compose
       rpi-imager

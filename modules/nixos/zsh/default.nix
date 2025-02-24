@@ -25,7 +25,7 @@ in {
       };
       plugins = mkOption {
         type = listOf str;
-        default = ["git" "sudo" "direnv"];
+        default = ["git" "sudo" "direnv" "poetry"];
       };
     };
   };

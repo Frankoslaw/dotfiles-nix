@@ -16,8 +16,8 @@ in {
 
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
-      gnome.gnome-tweaks
-      gnome.gnome-shell-extensions
+      gnome-tweaks
+      gnome-shell-extensions
       gnome-extension-manager
 
       gnomeExtensions.media-controls
@@ -31,7 +31,7 @@ in {
 
       iconTheme = {
         name = "Adwaita";
-        package = pkgs.gnome.adwaita-icon-theme;
+        package = pkgs.adwaita-icon-theme;
       };
 
       theme = {
@@ -99,14 +99,14 @@ in {
       };
 
       "org/gnome/desktop/background" = {
-        picture-uri = "file://${../../../../assets/wallpaper.png}";
-        picture-uri-dark = "file://${../../../../assets/wallpaper.png}";
+        picture-uri = "file://${../../../../assets/wl-daze.png}";
+        picture-uri-dark = "file://${../../../../assets/wl-daze.png}";
         picture-options = "zoom";
       };
 
       "org/gnome/desktop/screensaver" = {
-        picture-uri = "file://${../../../../assets/wallpaper.png}";
-        picture-uri-dark = "file://${../../../../assets/wallpaper.png}";
+        picture-uri = "file://${../../../../assets/wl-daze.png}";
+        picture-uri-dark = "file://${../../../../assets/wl-daze.png}";
         picture-options = "zoom";
       };
 

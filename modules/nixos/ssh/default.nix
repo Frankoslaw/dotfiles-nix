@@ -13,19 +13,20 @@ in {
   };
 
   config = mkIf cfg.enable {
+    programs.ssh.forwardX11 = true;
+    programs.ssh.setXAuthLocation = true;
+
     services.openssh = {
       inherit (cfg) enable;
+
       ports = [22];
+      openFirewall = true;
 
       settings = {
         PasswordAuthentication = false;
-        UseDns = true;
         PermitRootLogin = "prohibit-password";
+        X11Forwarding = true;
       };
-    };
-
-    networking.firewall = {
-      allowedTCPPorts = mkAfter [ 22 ];
     };
   };
 }

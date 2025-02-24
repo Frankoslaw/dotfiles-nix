@@ -17,15 +17,14 @@ with lib.${namespace}; {
       enable = true;
       videoDrivers = ["amdgpu"];
     };
-    flatpak.enable = true;
     gaming.enable = true;
     home-manager.enable = true;
     laptop.enable = true;
     locale.enable = true;
-    wireless.enable = true;
     nix.enable = true;
     printing.enable = true;
     security.enable = true;
+    sops.enable = true;
     virtualisation = {
       libvirtd.enable = true;
       podman.enable = true;
@@ -40,7 +39,7 @@ with lib.${namespace}; {
     isNormalUser = true;
     autoSubUidGidRange = true;
     description = "Franciszek Lopuszanski";
-    extraGroups = ["networkmanager" "input" "wheel" "qemu-libvirtd" "libvirtd" "podman" "wireshark" "plugdev"];
+    extraGroups = ["input" "wheel" "qemu-libvirtd" "libvirtd" "podman" "wireshark" "plugdev"];
     shell = pkgs.zsh;
   };
 

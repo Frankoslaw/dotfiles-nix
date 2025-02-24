@@ -26,9 +26,21 @@ in {
   };
 
   config = mkIf cfg.enable {
+    services.displayManager = {
+      defaultSession = "gnome";
+      autoLogin = {
+        enable = true;
+        user = "frankoslaw";
+      };
+    };
+
     services.xserver = {
       inherit (cfg) enable videoDrivers;
-      displayManager.gdm.enable = true;
+
+      displayManager.gdm = {
+        enable = true;
+        autoSuspend = false;
+      };
       desktopManager.gnome.enable = true;
       xkb = {
         layout = "pl";
@@ -43,10 +55,6 @@ in {
         openmoji-color
         (nerdfonts.override {fonts = ["JetBrainsMono"];})
       ];
-    };
-
-    hardware.graphics = {
-      inherit (cfg) enable;
     };
 
     xdg = {
@@ -65,5 +73,10 @@ in {
       XDG_DATA_HOME = "$HOME/.local/share";
       MOZ_ENABLE_WAYLAND = "1";
     };
+
+    systemd.targets.sleep.enable = false;
+    systemd.targets.suspend.enable = false;
+    systemd.targets.hibernate.enable = false;
+    systemd.targets.hybrid-sleep.enable = false;
   };
 }
