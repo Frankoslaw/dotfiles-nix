@@ -14,14 +14,13 @@ in {
 
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
+      bubblewrap
       steam
       heroic
-      bottles
       protonplus
       protontricks
       protonup-qt
       protonup-ng
-      prismlauncher
       gogdl
     ];
   };

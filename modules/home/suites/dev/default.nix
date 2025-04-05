@@ -14,12 +14,6 @@ in {
 
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
-      thonny
-      stm32cubemx
-      kicad
-      easyeda2kicad
-      prusa-slicer
-      ghidra
       dbeaver-bin
       sqlitebrowser
       insomnia
@@ -28,8 +22,6 @@ in {
       x11docker
       podman-tui
       podman-compose
-      rpi-imager
-      heimdall-gui
       imhex
       filezilla
       toolbox

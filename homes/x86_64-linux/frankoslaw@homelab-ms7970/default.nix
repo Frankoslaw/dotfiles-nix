@@ -24,5 +24,12 @@ with lib.${namespace}; {
     gaming.enable = true;
   };
 
+  services.flatpak.packages = [
+    "org.prismlauncher.PrismLauncher"
+    "com.usebottles.bottles"
+    "me.iepure.devtoolbox"
+    "com.github.tchx84.Flatseal"
+  ];
+
   home.stateVersion = "24.11";
 }

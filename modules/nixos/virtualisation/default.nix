@@ -15,6 +15,10 @@ in {
   };
 
   config = {
+    programs.virt-manager = {
+      inherit (cfg.libvirtd) enable;
+    };
+
     virtualisation = {
       libvirtd = {
         inherit (cfg.libvirtd) enable;

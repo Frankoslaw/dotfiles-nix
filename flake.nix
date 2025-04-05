@@ -36,6 +36,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nix-flatpak = {
+      url = "github:gmodena/nix-flatpak/?ref=v0.6.0";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nix-secrets = {
       url = "git+ssh://git@github.com/Frankoslaw/nix-secrets?shallow=1&ref=main";
       flake = false;
@@ -70,6 +75,10 @@
         rust-overlay.overlays.default
       ];
 
+      homes.modules = with inputs; [
+        nix-flatpak.homeManagerModules.nix-flatpak
+      ];
+
       systems.modules.nixos = with inputs; [
         sops-nix.nixosModules.sops
         disko.nixosModules.disko
@@ -78,7 +87,7 @@
 
       deploy.nodes = {
         homelab-ms7970 = {
-          hostname = "homelab-ms7970.local";
+          hostname = "192.168.0.95";
           profiles.system = {
             user = "root";
             sshUser = "root";

@@ -49,6 +49,7 @@ with lib.${namespace}; {
       ohMyZsh.enable = true;
     };
     sunshine.enable = true;
+    flatpak.enable = true;
   };
 
   hardware.graphics = {
@@ -81,7 +82,7 @@ with lib.${namespace}; {
       autoSubUidGidRange = true;
       description = "Franciszek Lopuszanski";
       hashedPasswordFile = config.sops.secrets.frankoslaw_passwd.path;
-      extraGroups = ["wheel" "networkmanager" "podman" "audio" "video" "input" "render" "docker"];
+      extraGroups = ["wheel" "networkmanager" "podman" "audio" "video" "input" "render" "docker" "libvirtd"];
       shell = pkgs.zsh;
     };
   };

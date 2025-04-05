@@ -36,7 +36,11 @@ in {
       '';
     };
 
-    networking.interfaces."enp6s0" = {
+    networking.interfaces."enp4s0" = {
+      useDHCP = false;
+    };
+
+    networking.interfaces."enp7s0" = {
       useDHCP = false;
       ipv4.addresses = [{
         address = "192.168.0.95";
@@ -44,6 +48,7 @@ in {
       }];
     };
 
+    networking.networkmanager.unmanaged = ["enp4s0" "enp7s0"];
     networking.networkmanager.ensureProfiles.environmentFiles = [ config.sops.secrets."wireless.env".path ];
     networking.networkmanager.ensureProfiles.profiles = mkIf cfg.networkmanager {
       fast-wifi = {
