@@ -14,6 +14,23 @@ with lib.${namespace}; {
     ./hardware-configuration.nix 
   ];
 
+  networking.nameservers = [ "192.168.0.1" "8.8.8.8" ];
+  networking.hostName = "homelab-ms7970";
+
+  networking.interfaces."enp4s0" = {
+    useDHCP = false;
+  };
+
+  networking.interfaces."enp7s0" = {
+    useDHCP = false;
+    ipv4.addresses = [{
+      address = "192.168.0.95";
+      prefixLength = 24;
+    }];
+  };
+
+  networking.networkmanager.unmanaged = ["enp4s0" "enp7s0"];
+
   boot.loader.timeout = 0;
   boot.loader.grub = {
     enable = true;
@@ -27,14 +44,12 @@ with lib.${namespace}; {
     display = {
       enable = true;
       videoDrivers = ["nvidia"];
+      autoLogin = true;
+      noSuspend = true;
     };
     home-manager.enable = true;
     locale.enable = true;
-    wireless = {
-      enable = true;
-      iwd = true;
-      networkmanager = true;
-    };
+    wireless.enable = true;
     nix.enable = true;
     security.enable = true;
     sops.enable = true;
@@ -48,7 +63,10 @@ with lib.${namespace}; {
       enable = true;
       ohMyZsh.enable = true;
     };
-    sunshine.enable = true;
+    sunshine = {
+      enable = true;
+      autoStart = true;
+    };
     flatpak.enable = true;
   };
 

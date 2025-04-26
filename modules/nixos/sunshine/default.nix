@@ -11,13 +11,19 @@
     mkIf
     mkOption
     ;
-  inherit (lib.types) listOf str;
+  inherit (lib.types) listOf str bool;
 
   cfg = config.dotfiles.sunshine;
 in
 {
   options.dotfiles.sunshine = {
     enable = mkEnableOption "Enable sunshine";
+
+    autoStart = mkOption {
+      type = bool;
+      default = false;
+      description = "Adds sunshine to autostart";
+    };
   };
 
   config = mkIf cfg.enable {
@@ -32,18 +38,18 @@ in
 
     services.sunshine = {
         enable = true;
-        autoStart = true;
+        autoStart = cfg.autoStart;
         capSysAdmin = true;
         openFirewall = true;
     };
 
     services.avahi = {
-        enable = false;
+        enable = true;
         openFirewall = true;
 
         publish = {
-            enable = false;
-            userServices = false;
+            enable = true;
+            userServices = true;
         };
     };
   };

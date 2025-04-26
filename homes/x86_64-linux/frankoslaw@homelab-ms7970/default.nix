@@ -29,6 +29,7 @@ with lib.${namespace}; {
     "com.usebottles.bottles"
     "me.iepure.devtoolbox"
     "com.github.tchx84.Flatseal"
+    "org.vinegarhq.Sober"
   ];
 
   home.stateVersion = "24.11";

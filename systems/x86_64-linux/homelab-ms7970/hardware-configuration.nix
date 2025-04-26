@@ -7,8 +7,9 @@
 
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" ];
   boot.initrd.kernelModules = [ "dm-snapshot" ];
-  boot.blacklistedKernelModules = [ "nouveau" "v4l2loopback" ];
+  boot.blacklistedKernelModules = [ "nouveau" ];
   boot.kernelModules = [ "kvm-intel" ];
+  boot.kernelPackages = pkgs.linuxPackages_latest; 
   boot.extraModulePackages = with config.boot.kernelPackages; [ v4l2loopback ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking

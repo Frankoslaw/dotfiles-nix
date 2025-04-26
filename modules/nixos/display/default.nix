@@ -10,7 +10,7 @@
     mkIf
     mkOption
     ;
-  inherit (lib.types) listOf str;
+  inherit (lib.types) listOf str bool;
 
   cfg = config.dotfiles.display;
 in {
@@ -23,12 +23,24 @@ in {
       description = "Video drivers to be loaded on boot.";
       example = lib.literalExpression ''["amdgpu"]'';
     };
+
+    autoLogin = mkOption {
+      type = bool;
+      default = false;
+      description = "Enable auto login";
+    };
+    noSuspend = mkOption {
+      type = bool;
+      default = false;
+      description = "Disable auto suspend";
+    };
   };
 
   config = mkIf cfg.enable {
     services.displayManager = {
       defaultSession = "gnome";
-      autoLogin = {
+
+      autoLogin = mkIf cfg.autoLogin {
         enable = true;
         user = "frankoslaw";
       };
@@ -39,7 +51,7 @@ in {
 
       displayManager.gdm = {
         enable = true;
-        autoSuspend = false;
+        autoSuspend = mkIf cfg.noSuspend false;
       };
       desktopManager.gnome.enable = true;
       xkb = {
@@ -59,7 +71,7 @@ in {
 
     xdg = {
       portal = {
-        inherit (cfg) enable;
+        enable = true;
 
         extraPortals = with pkgs; [
           xdg-desktop-portal-wlr
@@ -74,9 +86,11 @@ in {
       MOZ_ENABLE_WAYLAND = "1";
     };
 
-    systemd.targets.sleep.enable = false;
-    systemd.targets.suspend.enable = false;
-    systemd.targets.hibernate.enable = false;
-    systemd.targets.hybrid-sleep.enable = false;
+    systemd.targets = mkIf cfg.noSuspend {
+      sleep.enable = false;
+      suspend.enable = false;
+      hibernate.enable = false;
+      hybrid-sleep.enable = false;
+    };
   };
 }

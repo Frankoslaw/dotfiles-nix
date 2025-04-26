@@ -22,6 +22,8 @@ in {
           "frankoslaw"
           "@wheel"
         ];
+        max-jobs = lib.mkDefault 12;
+        cores = 12;
       };
 
       gc = {

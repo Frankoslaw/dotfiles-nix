@@ -15,7 +15,7 @@ in {
   config = mkIf cfg.enable {
     services = {
       printing = {
-        inherit (cfg) enable;
+        enable = true;
 
         drivers = with pkgs; [
           hplip
@@ -24,7 +24,7 @@ in {
       };
 
       avahi = {
-        inherit (cfg) enable;
+        enable = true;
 
         nssmdns4 = true;
         openFirewall = true;
