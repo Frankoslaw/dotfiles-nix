@@ -24,7 +24,8 @@ in {
       podman-compose
       imhex
       filezilla
-      toolbox
+      distrobox
+      distrobox-tui
       lens
       devenv
     ];

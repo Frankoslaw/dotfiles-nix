@@ -42,6 +42,18 @@ with lib.${namespace}; {
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
+    extraPackages = with pkgs; [
+      amdvlk
+      libvdpau-va-gl
+      mesa
+      nvidia-vaapi-driver
+      vaapiVdpau
+    ];
+    extraPackages32 = with pkgs; [
+      driversi686Linux.amdvlk
+      driversi686Linux.mesa
+      pkgsi686Linux.nvidia-vaapi-driver
+    ];
   };
 
   sops.secrets.frankoslaw_passwd = {

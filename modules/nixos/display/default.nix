@@ -37,6 +37,8 @@ in {
   };
 
   config = mkIf cfg.enable {
+    services.dbus.enable = true;
+
     services.displayManager = {
       defaultSession = "gnome";
 

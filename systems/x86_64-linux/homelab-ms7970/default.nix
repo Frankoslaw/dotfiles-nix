@@ -73,8 +73,20 @@ with lib.${namespace}; {
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
-    extraPackages = [ pkgs.nvidia-vaapi-driver ];
+    extraPackages = with pkgs; [
+      amdvlk
+      libvdpau-va-gl
+      mesa
+      nvidia-vaapi-driver
+      vaapiVdpau
+    ];
+    extraPackages32 = with pkgs; [
+      driversi686Linux.amdvlk
+      driversi686Linux.mesa
+      pkgsi686Linux.nvidia-vaapi-driver
+    ];
   };
+  
   hardware.nvidia = {
     modesetting.enable = true;
     powerManagement.enable = false;
