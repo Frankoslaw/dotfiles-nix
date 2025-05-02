@@ -20,6 +20,7 @@ in {
       gimp
       inkscape
       ani-cli
+      helvum
     ];
   };
 }

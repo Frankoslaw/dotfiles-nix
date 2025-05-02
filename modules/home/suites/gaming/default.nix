@@ -22,6 +22,8 @@ in {
       protonup-qt
       protonup-ng
       gogdl
+      wineWowPackages.stable
+      winetricks
     ];
   };
 }
