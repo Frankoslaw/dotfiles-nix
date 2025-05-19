@@ -1,8 +1,10 @@
 {
+  inputs,
   config,
   pkgs,
   lib,
   namespace,
+  system,
   ...
 }:
 with lib;
@@ -56,6 +58,13 @@ with lib.${namespace}; {
     ];
   };
 
+  hardware.opentabletdriver.enable = true;
+
+  services.udev.packages = [ 
+    pkgs.platformio-core
+    pkgs.openocd
+  ];
+
   sops.secrets.frankoslaw_passwd = {
     neededForUsers = true;
   };
@@ -72,7 +81,7 @@ with lib.${namespace}; {
       autoSubUidGidRange = true;
       description = "Franciszek Lopuszanski";
       hashedPasswordFile = config.sops.secrets.frankoslaw_passwd.path;
-      extraGroups = ["wheel" "networkmanager" "podman" "audio" "video" "input" "render" "docker" "libvirtd"];
+      extraGroups = ["wheel" "networkmanager" "podman" "audio" "video" "input" "render" "docker" "libvirtd" "kvm"];
       shell = pkgs.zsh;
     };
   };
@@ -93,6 +102,9 @@ with lib.${namespace}; {
     wget
     neofetch
     cowsay
+    iodine
+    inputs.winapps.packages."${system}".winapps
+    inputs.winapps.packages."${system}".winapps-launcher
   ];
   
   system.stateVersion = "24.11";

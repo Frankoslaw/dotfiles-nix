@@ -28,6 +28,16 @@ in {
       distrobox-tui
       lens
       devenv
+      arduino-cli
+      arduinoOTA
+      arduino-ide
+      avrdude
+      openocd
+      hugo
+      just
+      tree
+      fzf
+      fzf-zsh
     ];
 
     lib.dotfiles.programs = {

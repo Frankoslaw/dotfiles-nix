@@ -112,7 +112,7 @@ with lib.${namespace}; {
       autoSubUidGidRange = true;
       description = "Franciszek Lopuszanski";
       hashedPasswordFile = config.sops.secrets.frankoslaw_passwd.path;
-      extraGroups = ["wheel" "networkmanager" "podman" "audio" "video" "input" "render" "docker" "libvirtd"];
+      extraGroups = ["wheel" "networkmanager" "podman" "audio" "video" "input" "render" "docker" "libvirtd" "kvm"];
       shell = pkgs.zsh;
     };
   };

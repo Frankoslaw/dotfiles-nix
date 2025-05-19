@@ -9,6 +9,8 @@ with lib.${namespace}; {
   home.packages = with pkgs; [
     caprine-bin
     vesktop
+    element-desktop
+    whatsapp-for-linux
   ];
 
   dotfiles.packages = {
@@ -32,6 +34,7 @@ with lib.${namespace}; {
     "me.iepure.devtoolbox"
     "com.github.tchx84.Flatseal"
     "org.vinegarhq.Sober"
+    "com.freerdp.FreeRDP"
   ];
 
   home.stateVersion = "24.11";

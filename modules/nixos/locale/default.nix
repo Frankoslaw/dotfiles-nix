@@ -13,7 +13,8 @@ in {
   };
 
   config = mkIf cfg.enable {
-    time.timeZone = "Europe/Warsaw";
+    # TODO: Revert after isef to Europe/Warsaw
+    time.timeZone = "Europe/Paris";
 
     i18n.defaultLocale = "en_US.UTF-8";
     i18n.extraLocaleSettings = {

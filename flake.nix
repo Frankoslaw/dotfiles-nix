@@ -45,6 +45,11 @@
       url = "git+ssh://git@github.com/Frankoslaw/nix-secrets?shallow=1&ref=main";
       flake = false;
     };
+
+    winapps = {
+      url = "github:winapps-org/winapps";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs: let
