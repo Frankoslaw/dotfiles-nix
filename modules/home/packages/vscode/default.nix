@@ -18,7 +18,7 @@ in {
       inherit (cfg) enable;
       package = pkgs.vscode.fhs;
 
-      extensions = with pkgs.vscode-extensions; [
+      profiles.default.extensions = with pkgs.vscode-extensions; [
         redhat.vscode-yaml
 
         ms-vscode.cpptools
@@ -55,7 +55,7 @@ in {
         ritwickdey.liveserver
       ];
 
-      userSettings = {
+      profiles.default.userSettings = {
         "explorer.compactFolders" = false;
         "workbench.iconTheme" = "material-icon-theme";
         "terminal.integrated.defaultProfile.linux" = "zsh";

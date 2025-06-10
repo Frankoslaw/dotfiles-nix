@@ -13,6 +13,11 @@ in {
   };
 
   config = mkIf cfg.enable {
+    environment.systemPackages = with pkgs; [
+        clamav
+        clamtk
+    ];
+
     security = {
       rtkit = {
         inherit (cfg) enable;

@@ -37,5 +37,5 @@ with lib.${namespace}; {
     "com.freerdp.FreeRDP"
   ];
 
-  home.stateVersion = "24.11";
+  home.stateVersion = "25.05";
 }

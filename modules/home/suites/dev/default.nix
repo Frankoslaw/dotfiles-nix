@@ -38,6 +38,8 @@ in {
       tree
       fzf
       fzf-zsh
+      screen
+      minicom
     ];
 
     lib.dotfiles.programs = {

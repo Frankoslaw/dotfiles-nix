@@ -2,12 +2,12 @@
   description = "A very basic flake";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
     unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nur.url = "github:nix-community/NUR";
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-24.11";
+      url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -73,6 +73,9 @@
 
       channels-config = {
         allowUnfree = true;
+        permittedInsecurePackages = [
+          "electron-33.4.11"
+        ];
       };
 
       overlays = with inputs; [

@@ -107,5 +107,5 @@ with lib.${namespace}; {
     inputs.winapps.packages."${system}".winapps-launcher
   ];
   
-  system.stateVersion = "24.11";
+  system.stateVersion = "25.05";
 }
