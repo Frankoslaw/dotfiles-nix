@@ -46,8 +46,8 @@
       flake = false;
     };
 
-    winapps = {
-      url = "github:winapps-org/winapps";
+    nix-alien = {
+      url = "github:thiagokokada/nix-alien";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -75,12 +75,14 @@
         allowUnfree = true;
         permittedInsecurePackages = [
           "electron-33.4.11"
+          "ventoy-1.1.05"
         ];
       };
 
       overlays = with inputs; [
         nur.overlays.default
         rust-overlay.overlays.default
+        nix-alien.overlays.default
       ];
 
       homes.modules = with inputs; [

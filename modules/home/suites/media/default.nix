@@ -21,6 +21,7 @@ in {
       inkscape
       ani-cli
       helvum
+      qbittorrent
     ];
   };
 }

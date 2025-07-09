@@ -40,6 +40,8 @@ in {
       fzf-zsh
       screen
       minicom
+      rpi-imager
+      ventoy
     ];
 
     lib.dotfiles.programs = {
