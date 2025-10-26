@@ -8,6 +8,8 @@
 
   cfg = config.dotfiles.laptop;
 in {
+  # TODO: Rename to power managment
+  # TODO: Include nvidia power settings and other tweaks also for pc
   options.dotfiles.laptop = {
     enable = mkEnableOption "Laptop";
   };
@@ -54,11 +56,11 @@ in {
         PLATFORM_PROFILE_ON_AC = "performance";
         PLATFORM_PROFILE_ON_BAT = "low-power";
 
-        CPU_BOOST_ON_AC=1;
-        CPU_BOOST_ON_BAT=0;
+        CPU_BOOST_ON_AC = 1;
+        CPU_BOOST_ON_BAT = 0;
 
-        CPU_HWP_DYN_BOOST_ON_AC=1;
-        CPU_HWP_DYN_BOOST_ON_BAT=0;
+        CPU_HWP_DYN_BOOST_ON_AC = 1;
+        CPU_HWP_DYN_BOOST_ON_BAT = 0;
       };
     };
 

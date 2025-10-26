@@ -71,12 +71,9 @@
       inherit inputs;
       src = ./.;
 
+      # TODO: This should be configurable
       channels-config = {
         allowUnfree = true;
-        permittedInsecurePackages = [
-          "electron-33.4.11"
-          "ventoy-1.1.05"
-        ];
       };
 
       overlays = with inputs; [
@@ -95,22 +92,23 @@
         home-manager.nixosModules.home-manager
       ];
 
-      deploy.nodes = {
-        homelab-ms7970 = {
-          hostname = "192.168.0.95";
-          profiles.system = {
-            user = "root";
-            sshUser = "root";
-            remoteBuild = true;
-            path = inputs.deploy-rs.lib.x86_64-linux.activate.nixos inputs.self.nixosConfigurations.homelab-ms7970;
-          };
-        };
-      };
+      # TODO: Review and cleanup
+      # deploy.nodes = {
+      #   homelab-ms7970 = {
+      #     hostname = "192.168.0.95";
+      #     profiles.system = {
+      #       user = "root";
+      #       sshUser = "root";
+      #       remoteBuild = true;
+      #       path = inputs.deploy-rs.lib.x86_64-linux.activate.nixos inputs.self.nixosConfigurations.homelab-ms7970;
+      #     };
+      #   };
+      # };
 
-      checks =
-        builtins.mapAttrs
-        (system: deploy-lib:
-          deploy-lib.deployChecks inputs.self.deploy)
-        inputs.deploy-rs.lib;
+      # checks =
+      #   builtins.mapAttrs
+      #   (system: deploy-lib:
+      #     deploy-lib.deployChecks inputs.self.deploy)
+      #   inputs.deploy-rs.lib;
     };
 }

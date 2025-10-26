@@ -15,6 +15,7 @@ in {
   config = mkIf cfg.enable {
     time.timeZone = "Europe/Warsaw";
 
+    # TODO: This should not be hardcoded
     i18n.defaultLocale = "en_US.UTF-8";
     i18n.extraLocaleSettings = {
       LC_ADDRESS = "pl_PL.UTF-8";

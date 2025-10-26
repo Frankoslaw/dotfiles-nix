@@ -13,8 +13,9 @@ in {
   };
 
   config = mkIf cfg.enable {
-    sops.secrets."wireless.env" = { };
+    sops.secrets."wireless.env" = {};
 
+    # TODO: This should not be hardcoded
     networking.extraHosts = ''192.168.0.95 homelab'';
 
     networking.wireless.iwd = {
@@ -27,11 +28,17 @@ in {
     };
     networking.networkmanager.wifi.backend = "iwd";
 
+    # TODO: This should not be hardcoded
     networking.networkmanager.enable = true;
-    networking.networkmanager.ensureProfiles.environmentFiles = [ config.sops.secrets."wireless.env".path ];
+    networking.networkmanager.ensureProfiles.environmentFiles = [config.sops.secrets."wireless.env".path];
     networking.networkmanager.ensureProfiles.profiles = {
       fast-wifi = {
-        connection = { id = "fast-wifi"; type = "wifi"; autoconnect = true; autoconnect-priority = 300; };
+        connection = {
+          id = "fast-wifi";
+          type = "wifi";
+          autoconnect = true;
+          autoconnect-priority = 300;
+        };
         wifi.ssid = "$WIFI1_SSID";
         wifi-security = {
           key-mgmt = "wpa-psk";
@@ -39,10 +46,20 @@ in {
         };
       };
       wired = {
-        connection = { id = "wired"; type = "ethernet"; autoconnect = true; autoconnect-priority = 200;};
+        connection = {
+          id = "wired";
+          type = "ethernet";
+          autoconnect = true;
+          autoconnect-priority = 200;
+        };
       };
       personal-wifi = {
-        connection = { id = "personal-wifi"; type = "wifi"; autoconnect = true; autoconnect-priority = 100; };
+        connection = {
+          id = "personal-wifi";
+          type = "wifi";
+          autoconnect = true;
+          autoconnect-priority = 100;
+        };
         wifi.ssid = "$WIFI2_SSID";
         wifi-security = {
           key-mgmt = "wpa-psk";

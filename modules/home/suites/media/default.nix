@@ -12,13 +12,11 @@ in {
     enable = mkEnableOption "media suite";
   };
 
-  config = mkIf cfg.enable {    
+  config = mkIf cfg.enable {
     home.packages = with pkgs; [
       mpv
       vlc
-      krita
       gimp
-      inkscape
       ani-cli
       helvum
       qbittorrent

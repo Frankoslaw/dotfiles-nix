@@ -24,15 +24,11 @@ in {
         extensions.packages = with pkgs.nur.repos.rycee.firefox-addons; [
           ublock-origin
           multi-account-containers
-          react-devtools
           simple-translate
           user-agent-string-switcher
-          simple-tab-groups
-          clearurls
-          tree-style-tab
           grammarly
           wappalyzer
-          # TODO: Medneley
+          tab-session-manager
         ];
 
         settings = {

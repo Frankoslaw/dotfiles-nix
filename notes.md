@@ -16,21 +16,29 @@ export DOCKER_HOST=ssh://user@remotehost
 ```
 
 ## Wireguard
+
 Generate hash:
+
 ```sh
 docker run --rm -it ghcr.io/wg-easy/wg-easy wgpw 'PASS'
 ```
+
 Start wireguard:
+
 ```sh
 cd docker
 docker-compose -f base/wg.compose.yml up -d
 ```
+
 If you are running latest fedora you will also need to manually load certain kernel modules:
+
 ```sh
 sudo modprobe ip_tables 
 sudo modprobe iptable-nat
 ```
+
 For testing you can open port:
+
 ```sh
 sudo firewall-cmd --add-port 51820/tcp
 sudo firewall-cmd --add-port 51821/tcp
@@ -46,6 +54,7 @@ net.ipv4.ip_forward=1
 ## UFW on OCI
 
 Remember to also open the ports on OCI firewall:
+
 ```sh
 sudo iptables -L
 sudo iptables-save > ~/iptables-rules
@@ -74,7 +83,10 @@ sudo ufw route allow in on ens3 out on wg0
 ```
 
 TODO:
+
 - merge: https://github.com/Frankoslaw/cloud-native-playground
 - priority eth vs wifi
 - benchmark netowkr interfaces
 - prevent automatic gnome start
+- write ansible automation for contab, oci and raspberry pi
+- merge common desktop, server and core modules

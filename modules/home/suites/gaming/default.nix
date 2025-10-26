@@ -24,8 +24,6 @@ in {
       gogdl
       wineWowPackages.stable
       winetricks
-      osu-lazer-bin
-      oppai-ng
     ];
   };
 }

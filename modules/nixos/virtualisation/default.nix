@@ -25,7 +25,7 @@ in {
 
         qemu = {
           package = pkgs.qemu_kvm;
-          vhostUserPackages = with pkgs; [ virtiofsd ];
+          vhostUserPackages = with pkgs; [virtiofsd];
 
           ovmf = {
             enable = true;

@@ -14,8 +14,7 @@
   inherit (lib.types) listOf str;
 
   cfg = config.dotfiles.flatpak;
-in
-{
+in {
   options.dotfiles.flatpak = {
     enable = mkEnableOption "Enable flatpak";
   };

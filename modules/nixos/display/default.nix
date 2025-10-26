@@ -23,17 +23,6 @@ in {
       description = "Video drivers to be loaded on boot.";
       example = lib.literalExpression ''["amdgpu"]'';
     };
-
-    autoLogin = mkOption {
-      type = bool;
-      default = false;
-      description = "Enable auto login";
-    };
-    noSuspend = mkOption {
-      type = bool;
-      default = false;
-      description = "Disable auto suspend";
-    };
   };
 
   config = mkIf cfg.enable {
@@ -41,21 +30,15 @@ in {
 
     services.displayManager = {
       defaultSession = "gnome";
-
-      autoLogin = mkIf cfg.autoLogin {
-        enable = true;
-        user = "frankoslaw";
-      };
+      # TODO: Handle starting x11 session from ssh
     };
 
     services.xserver = {
       inherit (cfg) enable videoDrivers;
 
-      displayManager.gdm = {
-        enable = true;
-        autoSuspend = mkIf cfg.noSuspend false;
-      };
+      displayManager.gdm.enable = true;
       desktopManager.gnome.enable = true;
+
       xkb = {
         layout = "pl";
         variant = "";
@@ -82,17 +65,8 @@ in {
     };
 
     environment.variables = rec {
-      NIXOS_CONFIG = "$HOME/.config/nixos/configuration.nix";
-      NIXOS_CONFIG_DIR = "$HOME/.config/nixos/";
       XDG_DATA_HOME = "$HOME/.local/share";
       MOZ_ENABLE_WAYLAND = "1";
-    };
-
-    systemd.targets = mkIf cfg.noSuspend {
-      sleep.enable = false;
-      suspend.enable = false;
-      hibernate.enable = false;
-      hybrid-sleep.enable = false;
     };
   };
 }

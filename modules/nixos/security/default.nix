@@ -8,14 +8,15 @@
 
   cfg = config.dotfiles.security;
 in {
+  # TODO: Make this optional
   options.dotfiles.security = {
     enable = mkEnableOption "Security";
   };
 
   config = mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
-        clamav
-        clamtk
+      clamav
+      clamtk
     ];
 
     security = {
@@ -32,7 +33,7 @@ in {
 
     networking.firewall = {
       inherit (cfg) enable;
-      allowedTCPPorts = mkAfter [ 22 ];
+      allowedTCPPorts = mkAfter [22];
     };
   };
 }

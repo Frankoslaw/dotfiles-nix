@@ -6,42 +6,25 @@
 }: let
   inherit (lib) mkEnableOption mkIf;
 
-  cfg = config.dotfiles.suites.dev;
+  cfg = config.dotfiles.suites.dev-software;
 in {
-  options.dotfiles.suites.dev = {
-    enable = mkEnableOption "dev suite";
+  options.dotfiles.suites.dev-software = {
+    enable = mkEnableOption "software dev suite";
   };
 
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
-      dbeaver-bin
-      sqlitebrowser
       insomnia
       docker-compose
       lazydocker
-      x11docker
-      podman-tui
       podman-compose
-      imhex
       filezilla
       distrobox
-      distrobox-tui
       lens
       devenv
-      arduino-cli
-      arduinoOTA
-      arduino-ide
-      avrdude
-      openocd
-      hugo
-      just
       tree
       fzf
       fzf-zsh
-      screen
-      minicom
-      rpi-imager
-      ventoy
     ];
 
     lib.dotfiles.programs = {

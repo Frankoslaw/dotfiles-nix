@@ -28,5 +28,8 @@ in {
         X11Forwarding = true;
       };
     };
+
+    # TODO: Add failtoban + tailscale + wakeonlan
+    # TODO: Auto provisiong ssh keys
   };
 }

@@ -15,8 +15,8 @@
   boot.initrd.availableKernelModules = ["nvme" "xhci_pci" "usb_storage" "sd_mod"];
   boot.initrd.kernelModules = ["amdgpu"];
   boot.kernelModules = ["kvm-amd"];
-  boot.kernelPackages = pkgs.linuxPackages; 
-  boot.extraModulePackages = with config.boot.kernelPackages; [ v4l2loopback ];
+  boot.kernelPackages = pkgs.linuxPackages;
+  boot.extraModulePackages = with config.boot.kernelPackages; [v4l2loopback];
   boot.supportedFilesystems = [
     "ntfs"
     "btrfs"

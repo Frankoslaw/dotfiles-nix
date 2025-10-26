@@ -24,6 +24,7 @@ in {
       gnomeExtensions.caffeine
       gnomeExtensions.tray-icons-reloaded
       gnomeExtensions.tiling-assistant
+      gnomeExtensions.restart-to
     ];
 
     gtk = {

@@ -8,8 +8,13 @@ with lib;
 with lib.${namespace}; {
   programs.firefox.enable = true;
   home.packages = with pkgs; [
+    # TODO: Find alternative for caprine
+    caprine-bin
+    vesktop
+    whatsapp-for-linux
+    deja-dup
+    pika-backup
     fastfetch
-    libreoffice-fresh
   ];
 
   dotfiles.packages = {
@@ -20,17 +25,20 @@ with lib.${namespace}; {
   };
 
   dotfiles.suites = {
-    dev.enable = true;
+    dev-software.enable = true;
+    dev-electronics.enable = true;
     gaming.enable = true;
+    media.enable = true;
+    office.enable = true;
   };
 
   services.flatpak.packages = [
-    "org.prismlauncher.PrismLauncher"
     "com.usebottles.bottles"
-    "me.iepure.devtoolbox"
     "com.github.tchx84.Flatseal"
     "org.vinegarhq.Sober"
+    "io.github.flattool.Warehouse"
   ];
 
   home.stateVersion = "25.05";
+  # TODO: distrobox + gui + brew
 }

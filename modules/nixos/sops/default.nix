@@ -14,9 +14,9 @@
   inherit (lib.types) listOf str;
 
   cfg = config.dotfiles.sops;
-in
-{
-  imports = [ inputs.sops-nix.nixosModules.sops ];
+in {
+  # TODO: Fix ability to disable sops
+  imports = [inputs.sops-nix.nixosModules.sops];
 
   options.dotfiles.sops = {
     enable = mkEnableOption "Enable sops";
@@ -35,12 +35,13 @@ in
     ];
 
     sops = {
-        defaultSopsFile = cfg.secretsPath;
-        age = {
-            sshKeyPaths = ["/etc/ssh/ssh_host_ed25519_key"];
-            keyFile = "/var/lib/sops-nix/key.txt";
-            generateKey = true;
-        };
+      defaultSopsFile = cfg.secretsPath;
+      age = {
+        # TODO: This probably should be user scoped
+        sshKeyPaths = ["/etc/ssh/ssh_host_ed25519_key"];
+        keyFile = "/var/lib/sops-nix/key.txt";
+        generateKey = true;
+      };
     };
   };
 }
