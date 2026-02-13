@@ -17,9 +17,11 @@ in {
       git = {
         inherit (cfg) enable;
 
-        userName = "Franciszek Łopuszański";
-        userEmail = "franopusz2006@gmail.com";
-        extraConfig = {
+        settings = {
+          user = {
+            name = "Franciszek Łopuszański";
+            email = "franopusz2006@gmail.com";
+          };
           init = {
             defaultBranch = "main";
           };

@@ -30,14 +30,13 @@ in {
 
     services.displayManager = {
       defaultSession = "gnome";
-      # TODO: Handle starting x11 session from ssh
+      gdm.enable = true;
     };
+
+    services.desktopManager.gnome.enable = true;
 
     services.xserver = {
       inherit (cfg) enable videoDrivers;
-
-      displayManager.gdm.enable = true;
-      desktopManager.gnome.enable = true;
 
       xkb = {
         layout = "pl";
@@ -62,11 +61,6 @@ in {
           xdg-desktop-portal-wlr
         ];
       };
-    };
-
-    environment.variables = rec {
-      XDG_DATA_HOME = "$HOME/.local/share";
-      MOZ_ENABLE_WAYLAND = "1";
     };
   };
 }

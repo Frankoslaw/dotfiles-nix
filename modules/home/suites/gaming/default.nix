@@ -24,6 +24,7 @@ in {
       gogdl
       wineWowPackages.stable
       winetricks
+      prismlauncher
     ];
   };
 }

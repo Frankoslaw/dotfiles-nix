@@ -79,7 +79,7 @@ sudo ufw allow 51820/udp
 sudo ufw allow in on wg0
 sudo ufw allow out on wg0
 sudo ufw route allow in on wg0 out on ens3
-sudo ufw route allow in on ens3 out on wg0
+sudo ufw route allow in on ens3 out on wg
 ```
 
 TODO:

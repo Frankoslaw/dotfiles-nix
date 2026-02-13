@@ -11,10 +11,12 @@ with lib.${namespace}; {
     # TODO: Find alternative for caprine
     caprine-bin
     vesktop
-    whatsapp-for-linux
+    # whatsapp-for-linux
+    wasistlos
     deja-dup
     pika-backup
     fastfetch
+    ripgrep
   ];
 
   dotfiles.packages = {
@@ -37,8 +39,10 @@ with lib.${namespace}; {
     "com.github.tchx84.Flatseal"
     "org.vinegarhq.Sober"
     "io.github.flattool.Warehouse"
+    "org.gnome.Firmware"
+    "com.freerdp.FreeRDP"
   ];
 
-  home.stateVersion = "25.05";
+  home.stateVersion = "25.11";
   # TODO: distrobox + gui + brew
 }

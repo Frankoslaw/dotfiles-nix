@@ -20,6 +20,7 @@ in {
       anki-bin
       libreoffice-fresh
       corefonts
+      thunderbird
     ];
 
     programs.firefox.enable = true;

@@ -6,13 +6,13 @@ pkgs.mkShell {
     git
     treefmt
     alejandra
-    python310Packages.mdformat
+    python313Packages.mdformat
     shfmt
     go
     gitleaks
     pre-commit
-    python310
-    python310Packages.pre-commit-hooks
+    python313
+    python313Packages.pre-commit-hooks
     deploy-rs
     nixos-anywhere
     ssh-to-age

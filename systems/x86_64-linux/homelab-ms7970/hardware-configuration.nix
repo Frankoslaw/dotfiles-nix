@@ -42,15 +42,16 @@
     enable32Bit = true;
 
     extraPackages = with pkgs; [
-      amdvlk
+      # amdvlk
       libvdpau-va-gl
       mesa
       nvidia-vaapi-driver
-      vaapiVdpau
+      # vaapiVdpau
+      libva-vdpau-driver
     ];
 
     extraPackages32 = with pkgs; [
-      driversi686Linux.amdvlk
+      # driversi686Linux.amdvlk
       driversi686Linux.mesa
       pkgsi686Linux.nvidia-vaapi-driver
     ];

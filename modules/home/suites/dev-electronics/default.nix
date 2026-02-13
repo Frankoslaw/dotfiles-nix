@@ -22,9 +22,9 @@ in {
       minicom
       screen
       openocd
-      imhex
+      # imhex # FIX: Broken on unstable
       avrdude
-      rpi-imager
+      # rpi-imager # FIX: Broken on unstable
     ];
   };
 }

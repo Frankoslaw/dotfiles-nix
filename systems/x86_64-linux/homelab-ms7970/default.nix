@@ -29,6 +29,11 @@ with lib.${namespace}; {
     locale.enable = true;
     nix.enable = true;
     printing.enable = true;
+    rdp = {
+      enable = true;
+      xrdp.enable = false;
+      gnome-remote-desktop.enable = true;
+    };
     security.enable = true;
     sops.enable = true;
     ssh.enable = true;
@@ -37,6 +42,7 @@ with lib.${namespace}; {
       podman.enable = true;
       libvirtd.enable = true;
     };
+    vpn.enable = true;
     wireless.enable = true;
     zsh = {
       enable = true;
@@ -82,7 +88,8 @@ with lib.${namespace}; {
     wget
     neofetch
     cowsay
+    mangohud
   ];
 
-  system.stateVersion = "25.05";
+  system.stateVersion = "25.11";
 }

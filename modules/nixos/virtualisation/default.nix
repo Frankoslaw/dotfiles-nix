@@ -27,9 +27,10 @@ in {
           package = pkgs.qemu_kvm;
           vhostUserPackages = with pkgs; [virtiofsd];
 
-          ovmf = {
-            enable = true;
-          };
+          # FIX: Remove when 21.11 releases as it is no longer needed on unstable
+          # ovmf = {
+          #   enable = true;
+          # };
         };
       };
 
