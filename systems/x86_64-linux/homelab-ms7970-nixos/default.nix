@@ -32,8 +32,8 @@ with lib.${namespace}; {
     printing.enable = true;
     rdp = {
       enable = true;
-      xrdp.enable = false;
-      gnome-remote-desktop.enable = true;
+      xrdp.enable = true;
+      gnome-remote-desktop.enable = false;
     };
     security.enable = true;
     sops.enable = true;

@@ -3,19 +3,21 @@
   pkgs,
   lib,
   inputs,
+  osConfig ? {},
   ...
 }: let
   inherit (lib) mkEnableOption mkIf;
   mkTuple = inputs.home-manager.lib.hm.gvariant.mkTuple;
 
   cfg = config.dotfiles.packages.gtk;
+  gnomeEnabled = lib.attrByPath ["dotfiles" "display" "gnome" "enable"] false osConfig;
 in {
   options.dotfiles.packages.gtk = {
     enable = mkEnableOption "gtk";
   };
 
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [
+    home.packages = lib.optionals gnomeEnabled (with pkgs; [
       gnome-tweaks
       gnome-shell-extensions
       gnome-extension-manager
@@ -25,7 +27,7 @@ in {
       gnomeExtensions.tray-icons-reloaded
       gnomeExtensions.tiling-assistant
       gnomeExtensions.restart-to
-    ];
+    ]);
 
     gtk = {
       inherit (cfg) enable;
@@ -59,6 +61,10 @@ in {
     home.sessionVariables.GTK_THEME = "Adwaita-dark";
 
     dconf.settings = {
+      "system/locale" = {
+        region = "pl_PL.UTF-8";
+      };
+    } // lib.optionalAttrs gnomeEnabled {
       "org/gnome/desktop/input-sources" = {
         sources = [
           (mkTuple ["xkb" "pl"])
@@ -97,6 +103,9 @@ in {
 
       "org/gnome/desktop/interface" = {
         color-scheme = "prefer-dark";
+        clock-show-seconds = false;
+        clock-show-weekday = true;
+        show-battery-percentage = true;
       };
 
       "org/gnome/desktop/background" = {
@@ -109,12 +118,6 @@ in {
         picture-uri = "file://${../../../../assets/wl-daze.png}";
         picture-uri-dark = "file://${../../../../assets/wl-daze.png}";
         picture-options = "zoom";
-      };
-
-      "org/gnome/desktop/interface" = {
-        clock-show-seconds = false;
-        clock-show-weekday = true;
-        show-battery-percentage = true;
       };
 
       "org/gnome/desktop/session" = {
@@ -130,9 +133,6 @@ in {
         tap-to-click = true;
       };
 
-      "system/locale" = {
-        region = "pl_PL.UTF-8";
-      };
     };
   };
 }
