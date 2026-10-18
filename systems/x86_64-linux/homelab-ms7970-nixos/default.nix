@@ -21,6 +21,7 @@ with lib.${namespace}; {
     boot.enable = true;
     display = {
       enable = true;
+      plasma.enable = true;
       videoDrivers = ["nvidia"];
     };
     flatpak.enable = true;
@@ -89,6 +90,7 @@ with lib.${namespace}; {
     neofetch
     cowsay
     mangohud
+    codex
   ];
 
   system.stateVersion = "25.11";

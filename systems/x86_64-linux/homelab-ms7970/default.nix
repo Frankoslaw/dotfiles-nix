@@ -21,6 +21,7 @@ with lib.${namespace}; {
     boot.enable = true;
     display = {
       enable = true;
+      gnome.enable = true;
       videoDrivers = ["nvidia"];
     };
     flatpak.enable = true;

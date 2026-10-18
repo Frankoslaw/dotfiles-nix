@@ -8,6 +8,7 @@ with lib;
 with lib.${namespace}; {
   programs.firefox.enable = true;
   home.packages = with pkgs; [
+    kdePackages.kate
     # TODO: Find alternative for caprine
     caprine-bin
     vesktop

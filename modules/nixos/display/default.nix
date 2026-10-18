@@ -17,6 +17,9 @@ in {
   options.dotfiles.display = {
     enable = mkEnableOption "Display";
 
+    gnome.enable = mkEnableOption "GNOME";
+    plasma.enable = mkEnableOption "KDE Plasma";
+
     videoDrivers = mkOption {
       type = listOf str;
       default = [];
@@ -29,11 +32,13 @@ in {
     services.dbus.enable = true;
 
     services.displayManager = {
-      defaultSession = "gnome";
-      gdm.enable = true;
+      defaultSession = if cfg.plasma.enable then "plasma" else "gnome";
+      gdm.enable = cfg.gnome.enable;
+      sddm.enable = cfg.plasma.enable;
     };
 
-    services.desktopManager.gnome.enable = true;
+    services.desktopManager.gnome.enable = cfg.gnome.enable;
+    services.desktopManager.plasma6.enable = cfg.plasma.enable;
 
     services.xserver = {
       inherit (cfg) enable videoDrivers;
