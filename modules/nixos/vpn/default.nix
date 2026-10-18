@@ -29,11 +29,12 @@ in {
 
         status="$(${tailscale}/bin/tailscale status -json | ${jq}/bin/jq -r .BackendState)"
         if [ "$status" = "Running" ]; then
+          ${tailscale}/bin/tailscale set --ssh
           exit 0
         fi
 
         authkey="$(<${config.sops.secrets.tailscale_authkey.path})"
-        ${tailscale}/bin/tailscale up --authkey "$authkey"
+        ${tailscale}/bin/tailscale up --authkey "$authkey" --ssh
       '';
     };
 

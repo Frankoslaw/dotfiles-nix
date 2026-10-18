@@ -33,6 +33,12 @@ in {
       default = 8000;
       description = "Port on which Paperless-ngx listens.";
     };
+
+    allowedHosts = mkOption {
+      type = types.listOf types.str;
+      default = [];
+      description = "Additional hostnames accepted by Paperless-ngx.";
+    };
   };
 
   config = mkIf cfg.enable {
@@ -50,7 +56,7 @@ in {
       domain = null;
       settings = {
         PAPERLESS_DBENGINE = "sqlite";
-        PAPERLESS_ALLOWED_HOSTS = "${cfg.domain},localhost,127.0.0.1";
+        PAPERLESS_ALLOWED_HOSTS = lib.concatStringsSep "," ([cfg.domain "localhost" "127.0.0.1"] ++ cfg.allowedHosts);
         PAPERLESS_URL = "http://${cfg.domain}:${toString cfg.port}";
       };
     };

@@ -28,7 +28,13 @@ with lib.${namespace}; {
     home-manager.enable = true;
     locale.enable = true;
     nix.enable = true;
-    paperless.enable = true;
+    paperless = {
+      enable = true;
+      # Expose Paperless on the host so it can receive connections through
+      # tailscale0. The VPN module trusts that interface in the firewall.
+      address = "0.0.0.0";
+      allowedHosts = [".ts.net"];
+    };
     printing.enable = true;
     rdp = {
       enable = true;
@@ -65,7 +71,7 @@ with lib.${namespace}; {
 
     frankoslaw = {
       openssh.authorizedKeys.keys = [
-        ''ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFCeiUbHvQjcHy0DeRJkxh7sO/W5BYh6+7s8Bo42j6Xp frankoslaw@bazzite''
+        ''ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBF33ot7xAbxecd448QL+WHJvZCR/15GVtktgX0dhXgr frano@DESKTOP-OMN418K''
       ];
 
       isNormalUser = true;
