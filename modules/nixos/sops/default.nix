@@ -37,10 +37,11 @@ in {
     sops = {
       defaultSopsFile = cfg.secretsPath;
       age = {
-        # TODO: This probably should be user scoped
-        sshKeyPaths = ["/etc/ssh/ssh_host_ed25519_key"];
-        keyFile = "/var/lib/sops-nix/key.txt";
-        generateKey = true;
+        # nix-secrets is encrypted for the user's age identity derived from
+        # ~/.ssh/id_ed25519, not for the machine's SSH host key.
+        sshKeyPaths = [];
+        keyFile = "/home/frankoslaw/.config/sops/age/keys.txt";
+        generateKey = false;
       };
     };
   };

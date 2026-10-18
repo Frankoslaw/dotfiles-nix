@@ -16,15 +16,12 @@ in {
     home.packages = with pkgs; [
       insomnia
       docker-compose
-      lazydocker
       podman-compose
       filezilla
       distrobox
-      lens
       devenv
       tree
       fzf
-      fzf-zsh
     ];
 
     lib.dotfiles.programs = {

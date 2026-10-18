@@ -18,7 +18,7 @@ in {
       vlc
       gimp
       ani-cli
-      helvum
+      crosspipe
       qbittorrent
     ];
   };

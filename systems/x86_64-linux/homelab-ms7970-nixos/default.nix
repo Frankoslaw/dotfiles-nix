@@ -28,6 +28,7 @@ with lib.${namespace}; {
     home-manager.enable = true;
     locale.enable = true;
     nix.enable = true;
+    paperless.enable = true;
     printing.enable = true;
     rdp = {
       enable = true;

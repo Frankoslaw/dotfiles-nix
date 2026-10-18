@@ -6,18 +6,34 @@
   osConfig ? {},
   ...
 }: let
-  inherit (lib) mkEnableOption mkIf;
+  inherit (lib) mkEnableOption mkIf mkOption;
+  inherit (lib.types) path;
   mkTuple = inputs.home-manager.lib.hm.gvariant.mkTuple;
 
   cfg = config.dotfiles.packages.gtk;
   gnomeEnabled = lib.attrByPath ["dotfiles" "display" "gnome" "enable"] false osConfig;
-  wallpaper = ../../../../assets/wl-genshin.jpg;
   plasmaWallpaper = pkgs.writeShellScript "dotfiles-plasma-wallpaper" ''
-    exec ${pkgs.kdePackages.plasma-workspace}/bin/plasma-apply-wallpaperimage ${wallpaper}
+    # Plasma may not have finished starting when the desktop autostart entries run.
+    sleep 3
+    for attempt in $(seq 1 10); do
+      if ${pkgs.kdePackages.plasma-workspace}/bin/plasma-apply-wallpaperimage \
+        "${cfg.wallpaper}"; then
+        exit 0
+      fi
+      sleep 1
+    done
+
+    exit 1
   '';
 in {
   options.dotfiles.packages.gtk = {
     enable = mkEnableOption "gtk";
+
+    wallpaper = mkOption {
+      type = path;
+      default = ../../../../assets/wl-genshin.jpg;
+      description = "Wallpaper image used by GNOME and KDE Plasma.";
+    };
   };
 
   config = mkIf cfg.enable {
@@ -35,6 +51,12 @@ in {
 
     gtk = {
       inherit (cfg) enable;
+
+      # Leave existing GTK config files untouched; they may be managed outside
+      # Home Manager already.
+      gtk2.enable = false;
+      gtk3.enable = false;
+      gtk4.enable = false;
 
       iconTheme = {
         name = "Adwaita";
@@ -60,6 +82,7 @@ in {
           gtk-application-prefer-dark-theme=1
         '';
       };
+
     };
 
     home.sessionVariables.GTK_THEME = "Adwaita-dark";
@@ -122,14 +145,14 @@ in {
       };
 
       "org/gnome/desktop/background" = {
-        picture-uri = "file://${wallpaper}";
-        picture-uri-dark = "file://${wallpaper}";
+        picture-uri = "file://${cfg.wallpaper}";
+        picture-uri-dark = "file://${cfg.wallpaper}";
         picture-options = "zoom";
       };
 
       "org/gnome/desktop/screensaver" = {
-        picture-uri = "file://${wallpaper}";
-        picture-uri-dark = "file://${wallpaper}";
+        picture-uri = "file://${cfg.wallpaper}";
+        picture-uri-dark = "file://${cfg.wallpaper}";
         picture-options = "zoom";
       };
 
