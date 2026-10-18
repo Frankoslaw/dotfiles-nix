@@ -3,7 +3,7 @@
   lib,
   ...
 }: let
-  inherit (lib) mkEnableOption mkIf mkOption types;
+  inherit (lib) mkAfter mkEnableOption mkIf mkOption types;
 
   cfg = config.dotfiles.paperless;
   paperlessServices = [
@@ -60,6 +60,13 @@ in {
         PAPERLESS_URL = "http://${cfg.domain}:${toString cfg.port}";
       };
     };
+
+    # Paperless is reachable from the private LAN, while Tailscale access is
+    # provided by the trusted tailscale0 interface in the VPN module.
+    networking.firewall.extraInputRules = mkAfter ''
+      ip saddr { 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 } tcp dport ${toString cfg.port} accept
+      ip6 saddr fc00::/7 tcp dport ${toString cfg.port} accept
+    '';
 
     systemd.services = lib.genAttrs paperlessServices (_: {
       serviceConfig.TimeoutStopSec = "5min";
