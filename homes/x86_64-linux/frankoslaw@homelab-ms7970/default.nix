@@ -44,6 +44,6 @@ with lib.${namespace}; {
     "com.freerdp.FreeRDP"
   ];
 
-  home.stateVersion = "25.11";
+  home.stateVersion = "26.05";
   # TODO: distrobox + gui + brew
 }

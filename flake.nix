@@ -2,12 +2,12 @@
   description = "A very basic flake";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
     unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nur.url = "github:nix-community/NUR";
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.11";
+      url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -96,19 +96,6 @@
         disko.nixosModules.disko
         home-manager.nixosModules.home-manager
       ];
-
-      # TODO: Review and cleanup
-      # deploy.nodes = {
-      #   homelab-ms7970 = {
-      #     hostname = "192.168.0.95";
-      #     profiles.system = {
-      #       user = "root";
-      #       sshUser = "root";
-      #       remoteBuild = true;
-      #       path = inputs.deploy-rs.lib.x86_64-linux.activate.nixos inputs.self.nixosConfigurations.homelab-ms7970;
-      #     };
-      #   };
-      # };
 
       # checks =
       #   builtins.mapAttrs

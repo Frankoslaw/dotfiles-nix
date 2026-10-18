@@ -25,7 +25,6 @@ with lib.${namespace}; {
       videoDrivers = ["nvidia"];
     };
     flatpak.enable = true;
-    gaming.enable = true;
     home-manager.enable = true;
     locale.enable = true;
     nix.enable = true;
@@ -39,7 +38,6 @@ with lib.${namespace}; {
     sops.enable = true;
     ssh.enable = true;
     virtualisation = {
-      docker.enable = true;
       podman.enable = true;
       libvirtd.enable = true;
     };
@@ -71,7 +69,7 @@ with lib.${namespace}; {
       autoSubUidGidRange = true;
       description = "Franciszek Lopuszanski";
       hashedPasswordFile = config.sops.secrets.frankoslaw_passwd.path;
-      extraGroups = ["wheel" "networkmanager" "podman" "audio" "video" "input" "render" "docker" "libvirtd" "kvm"];
+      extraGroups = ["wheel" "networkmanager" "podman" "audio" "video" "input" "render" "libvirtd" "kvm"];
       shell = pkgs.zsh;
     };
   };
@@ -93,5 +91,5 @@ with lib.${namespace}; {
     codex
   ];
 
-  system.stateVersion = "25.11";
+  system.stateVersion = "26.05";
 }
