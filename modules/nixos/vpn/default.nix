@@ -4,7 +4,7 @@
   lib,
   ...
 }: let
-  inherit (lib) mkEnableOption mkIf mkAfter;
+  inherit (lib) mkEnableOption mkIf;
 
   cfg = config.dotfiles.vpn;
 in {
@@ -16,34 +16,31 @@ in {
     services.tailscale.enable = true;
     networking.nftables.enable = true;
 
-    environment.systemPackages = with pkgs; [
-      trayscale # TODO: This should be a user package
-      tailscale
-    ];
-
     systemd.services.tailscale-autoconnect = {
       description = "Automatic connection to Tailscale";
-
-      after = [ "network-pre.target" "tailscale.service" ];
-      wants = [ "network-pre.target" "tailscale.service" ];
-      wantedBy = [ "multi-user.target" ];
+      after = ["network-online.target" "tailscale.service"];
+      wants = ["network-online.target" "tailscale.service"];
+      wantedBy = ["multi-user.target"];
 
       serviceConfig.Type = "oneshot";
 
       script = with pkgs; ''
-        # wait for tailscaled to settle
         sleep 2
 
-        # check if we are already authenticated to tailscale
         status="$(${tailscale}/bin/tailscale status -json | ${jq}/bin/jq -r .BackendState)"
-        if [ $status = "Running" ]; then # if so, then do nothing
+        if [ "$status" = "Running" ]; then
           exit 0
         fi
 
-        # otherwise authenticate with tailscale # TODO: Move to secrets repo
-        ${tailscale}/bin/tailscale up -authkey tskey-auth-<REDACTED>
+        authkey="$(<${config.sops.secrets.tailscale_authkey.path})"
+        ${tailscale}/bin/tailscale up --authkey "$authkey"
       '';
     };
+
+    environment.systemPackages = with pkgs; [
+      trayscale # TODO: This should be a user package
+      tailscale
+    ];
 
     networking.firewall = {
       enable = true; # TODO: Should this be here?

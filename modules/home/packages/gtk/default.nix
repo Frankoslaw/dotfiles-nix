@@ -11,6 +11,10 @@
 
   cfg = config.dotfiles.packages.gtk;
   gnomeEnabled = lib.attrByPath ["dotfiles" "display" "gnome" "enable"] false osConfig;
+  wallpaper = ../../../../assets/wl-genshin.jpg;
+  plasmaWallpaper = pkgs.writeShellScript "dotfiles-plasma-wallpaper" ''
+    exec ${pkgs.kdePackages.plasma-workspace}/bin/plasma-apply-wallpaperimage ${wallpaper}
+  '';
 in {
   options.dotfiles.packages.gtk = {
     enable = mkEnableOption "gtk";
@@ -59,6 +63,15 @@ in {
     };
 
     home.sessionVariables.GTK_THEME = "Adwaita-dark";
+
+    xdg.configFile."autostart/dotfiles-plasma-wallpaper.desktop".text = ''
+      [Desktop Entry]
+      Type=Application
+      Name=Dotfiles Plasma wallpaper
+      Exec=${plasmaWallpaper}
+      OnlyShowIn=KDE;Plasma;
+      X-GNOME-Autostart-enabled=true
+    '';
 
     dconf.settings = {
       "system/locale" = {
@@ -109,14 +122,14 @@ in {
       };
 
       "org/gnome/desktop/background" = {
-        picture-uri = "file://${../../../../assets/wl-daze.png}";
-        picture-uri-dark = "file://${../../../../assets/wl-daze.png}";
+        picture-uri = "file://${wallpaper}";
+        picture-uri-dark = "file://${wallpaper}";
         picture-options = "zoom";
       };
 
       "org/gnome/desktop/screensaver" = {
-        picture-uri = "file://${../../../../assets/wl-daze.png}";
-        picture-uri-dark = "file://${../../../../assets/wl-daze.png}";
+        picture-uri = "file://${wallpaper}";
+        picture-uri-dark = "file://${wallpaper}";
         picture-options = "zoom";
       };
 

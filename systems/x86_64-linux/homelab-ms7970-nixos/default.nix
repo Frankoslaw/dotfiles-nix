@@ -53,6 +53,8 @@ with lib.${namespace}; {
     neededForUsers = true;
   };
 
+  sops.secrets.tailscale_authkey = {};
+
   users.users = {
     root = {
       openssh.authorizedKeys.keys = [
@@ -85,10 +87,11 @@ with lib.${namespace}; {
     usbutils
     pciutils
     wget
-    neofetch
+    fastfetch
     cowsay
     mangohud
     codex
+    veracrypt
   ];
 
   system.stateVersion = "26.05";

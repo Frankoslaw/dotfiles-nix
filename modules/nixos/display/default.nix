@@ -49,6 +49,8 @@ in {
       };
     };
 
+    hardware.nvidia.open = mkIf (lib.elem "nvidia" cfg.videoDrivers) (lib.mkDefault false);
+
     fonts = {
       packages = with pkgs; [
         jetbrains-mono
