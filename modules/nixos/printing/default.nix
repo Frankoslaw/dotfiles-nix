@@ -30,5 +30,16 @@ in {
         openFirewall = true;
       };
     };
+
+    hardware.sane = {
+      enable = true;
+      extraBackends = with pkgs; [
+        hplipWithPlugin
+      ];
+    };
+
+    environment.systemPackages = with pkgs; [
+      simple-scan
+    ];
   };
 }

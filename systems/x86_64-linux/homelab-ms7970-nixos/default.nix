@@ -18,6 +18,7 @@ with lib.${namespace}; {
 
   dotfiles = {
     audio.enable = true;
+    bluetooth.enable = true;
     boot.enable = true;
     display = {
       enable = true;
