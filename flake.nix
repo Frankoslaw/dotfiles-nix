@@ -55,6 +55,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    moonshine = {
+      url = "github:hgaiser/moonshine";
+    };
+
   };
 
   outputs = inputs: let
@@ -85,6 +89,7 @@
         nur.overlays.default
         rust-overlay.overlays.default
         nix-alien.overlays.default
+        moonshine.overlays.default
       ];
 
       homes.modules = with inputs; [
@@ -95,6 +100,7 @@
         sops-nix.nixosModules.sops
         disko.nixosModules.disko
         home-manager.nixosModules.home-manager
+        moonshine.nixosModules.default
       ];
 
       # checks =

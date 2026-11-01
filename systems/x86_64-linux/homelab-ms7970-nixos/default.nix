@@ -28,6 +28,7 @@ with lib.${namespace}; {
     flatpak.enable = true;
     home-manager.enable = true;
     locale.enable = true;
+    moonshine.enable = true;
     nix.enable = true;
     paperless = {
       enable = true;
@@ -37,11 +38,7 @@ with lib.${namespace}; {
       allowedHosts = [".ts.net"];
     };
     printing.enable = true;
-    rdp = {
-      enable = true;
-      xrdp.enable = true;
-      gnome-remote-desktop.enable = false;
-    };
+    xrdp.enable = true;
     security.enable = true;
     sops.enable = true;
     ssh.enable = true;
@@ -79,7 +76,19 @@ with lib.${namespace}; {
       autoSubUidGidRange = true;
       description = "Franciszek Lopuszanski";
       hashedPasswordFile = config.sops.secrets.frankoslaw_passwd.path;
-      extraGroups = ["wheel" "networkmanager" "podman" "audio" "video" "input" "render" "libvirtd" "kvm"];
+      extraGroups = [
+        "wheel"
+        "networkmanager"
+        "podman"
+        "audio"
+        "video"
+        "input"
+        "render"
+        "libvirtd"
+        "kvm"
+        "scanner"
+        "lp"
+      ];
       shell = pkgs.zsh;
     };
   };
