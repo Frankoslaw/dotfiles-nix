@@ -12,6 +12,7 @@ pkgs.mkShell {
     gitleaks
     pre-commit
     python313
+    uv
     python313Packages.pre-commit-hooks
     deploy-rs
     nixos-anywhere

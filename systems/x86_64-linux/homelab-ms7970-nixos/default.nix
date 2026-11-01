@@ -26,6 +26,7 @@ with lib.${namespace}; {
       videoDrivers = ["nvidia"];
     };
     flatpak.enable = true;
+    gaming.enable = true;
     home-manager.enable = true;
     locale.enable = true;
     moonshine.enable = true;

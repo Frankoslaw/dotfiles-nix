@@ -29,7 +29,6 @@ in {
 
         tamasfe.even-better-toml
         fill-labs.dependi
-        rust-lang.rust-analyzer
         vadimcn.vscode-lldb
 
         bbenoist.nix

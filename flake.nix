@@ -16,11 +16,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    rust-overlay = {
-      url = "github:oxalica/rust-overlay";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     deploy-rs = {
       url = "github:serokell/deploy-rs";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -87,7 +82,6 @@
 
       overlays = with inputs; [
         nur.overlays.default
-        rust-overlay.overlays.default
         nix-alien.overlays.default
         moonshine.overlays.default
       ];
